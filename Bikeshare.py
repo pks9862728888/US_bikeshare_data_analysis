@@ -23,7 +23,7 @@ def get_month(filters):
         return 'all'
 
     while True:
-        month = input('\nChoose the month by which you want to filter the data:\n1) January\
+        month = input('\n\nChoose the month by which you want to filter the data:\n1) January\
         \n2) February\n3) March\n4) April\n5) May\n6) June\n7) All?\nPlease input numbers only(1-7):\n')
         month = month.lower()
         months = ['january', 'february', 'march', 'april', 'may', 'june', 'all']
@@ -49,7 +49,6 @@ def get_month(filters):
                 print('Please select any option from (1-7):')
                 continue
         break
-
     return month
 
 
@@ -96,7 +95,6 @@ def get_day(filters):
                 print('Please select any option from (1-8):')
                 continue
         break
-
     return day
 
 
@@ -169,7 +167,7 @@ def get_filters():
             break
 
     # Displaying the filters to data:
-    print('\n****************CHOSEN FILTERS****************')
+    print('\n\n****************CHOSEN FILTERS****************')
     print('City: {}\nMonth: {}\nDay: {}'.format(city.title(), month.title(), day.title()))
     print('**********************************************')
 
@@ -198,7 +196,7 @@ def main():
             main()
         else:
             print('\n******************THANK YOU*******************\n')
-            break
+            quit(0)
 
 
 if __name__ == '__main__':
