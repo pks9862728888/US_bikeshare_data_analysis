@@ -295,16 +295,16 @@ def time_stats(df, filters):
         (str) filters - Filters chosen: Month, Day, Both, or None
     """
 
+    print('**********************************************')
+    print('  Calculating Most Frequent Times Of Travel')
+    print('               Filter: ', filters)
+    print('**********************************************')
+
     start_time = time.time()
     popular_month, count_popular_month = common_month(df)
     popular_day, count_popular_day = common_day(df)
     popular_hour = df['Hour'].mode()[0]
     count_popular_hour = (df['Hour'] == popular_hour).sum()
-
-    print('**********************************************')
-    print('  Calculating Most Frequent Times Of Travel')
-    print('               Filter: ', filters)
-    print('**********************************************')
 
     if filters == 'None':
         print('\nMost popular month for travelling: ', popular_month)
@@ -328,6 +328,23 @@ def time_stats(df, filters):
         print('Count: ', count_popular_hour)
 
     print('\nThis took about {} seconds'. format(time.time() - start_time))
+    print('**********************************************')
+
+
+def station_stats(df, filters):
+    print('\n**********************************************')
+    print('  Calculating Most Popular Stations & Trips')
+    print('               Filter: ', filters)
+    print('**********************************************')
+    start_time = time.time()
+
+    print('Most Commonly Used Start Station: ', df['Start Station'].mode()[0])
+    print('Count: ', df['Start Station'].value_counts()[0])
+    print('\nMost Commonly Used End Station: ', df['End Station'].mode()[0])
+    print('Count: ', df['End Station'].value_counts()[0])
+    print('\nMost Commonly Used Combination of Start and End Stations: ')
+
+    print('\nThis took about {} seconds.'.format(time.time() - start_time))
     print('**********************************************')
 
 
@@ -364,6 +381,7 @@ def main():
 
         print('\n\n************DISPLAYING STATISTICS*************')
         time_stats(df, filters)
+        station_stats(df, filters)
 
         # To restart or quit program
         restart_prog()
