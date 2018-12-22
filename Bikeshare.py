@@ -332,6 +332,13 @@ def time_stats(df, filters):
 
 
 def station_stats(df, filters):
+    """
+    Displays statistics on most popular station and trip.
+
+    :param:
+        (data frame) df - The data frame after applying filters
+        (str) filters - Filters chosen: Month, Day, Both, or None
+    """
     print('\n**********************************************')
     print('  Calculating Most Popular Stations & Trips')
     print('               Filter: ', filters)
@@ -348,7 +355,7 @@ def station_stats(df, filters):
     print('**********************************************')
 
 
-def restart_prog():
+def restart_program():
     """
     Asks user whether to restart the program. If 'yes' program is restarted else exit from program.
     """
@@ -384,7 +391,7 @@ def main():
         station_stats(df, filters)
 
         # To restart or quit program
-        restart_prog()
+        restart_program()
 
 
 if __name__ == '__main__':
