@@ -308,24 +308,24 @@ def time_stats(df, filters):
 
     if filters == 'None':
         print('\nMost popular month for travelling: ', popular_month)
-        print('Count: ', count_popular_month)
+        print('Counts: ', count_popular_month)
         print('\nMost popular day for travelling: ', popular_day)
-        print('Count: ', count_popular_day)
+        print('Counts: ', count_popular_day)
         print('\nMost popular hour of day for travelling: ', popular_hour)
-        print('Count: ', count_popular_hour)
+        print('Counts: ', count_popular_hour)
     elif filters == 'Both':
         print('\nMost popular hour of day for travelling: ', popular_hour)
-        print('Count: ', count_popular_hour)
+        print('Counts: ', count_popular_hour)
     elif filters == 'Month':
         print('\nMost popular day for travelling: ', popular_day)
-        print('Count: ', count_popular_day)
+        print('Counts: ', count_popular_day)
         print('\nMost popular hour of day for travelling: ', popular_hour)
-        print('Count: ', count_popular_hour)
+        print('Counts: ', count_popular_hour)
     elif filters == 'Day':
         print('\nMost popular month for travelling: ', popular_month)
-        print('Count: ', count_popular_month)
+        print('Counts: ', count_popular_month)
         print('\nMost popular hour of day for travelling: ', popular_hour)
-        print('Count: ', count_popular_hour)
+        print('Counts: ', count_popular_hour)
 
     print('\nThis took about {} seconds'. format(time.time() - start_time))
     print('**********************************************')
@@ -346,9 +346,9 @@ def station_stats(df, filters):
     start_time = time.time()
 
     print('Most Commonly Used Start Station: ', df['Start Station'].mode()[0])
-    print('Count: ', df['Start Station'].value_counts()[0])
+    print('Counts: ', df['Start Station'].value_counts()[0])
     print('\nMost Commonly Used End Station: ', df['End Station'].mode()[0])
-    print('Count: ', df['End Station'].value_counts()[0])
+    print('Counts: ', df['End Station'].value_counts()[0])
     print('\nMost Commonly Used Combination of Start and End Stations: ')
 
     print('\nThis took about {} seconds.'.format(time.time() - start_time))
@@ -373,8 +373,100 @@ def trip_duration_stats(df, filters):
     # Displaying total time
     print('Total Duration: ', df['Trip Duration'].sum())
     print('Counts: ', df['Trip Duration'].count())
+
+    # Displaying average duration
     print('\nAverage Duration: ', df['Trip Duration'].mean())
 
+    print('\nThis took about {} seconds.'.format(time.time() - start_time))
+    print('**********************************************')
+
+
+def user_stats(df, filters):
+    """
+        Displays statistics on types of users, gender, most recent and most common year of birth.
+
+        :param:
+            (data frame) df - The data frame after applying filters
+            (str) filters - Filters chosen: Month, Day, Both, or None
+        """
+
+    print('\n**********************************************')
+    print('          Calculating User Statistics')
+    print('               Filter: ', filters)
+    print('**********************************************')
+    start_time = time.time()
+
+    # Calculating count on user types
+    unique_user = df['User Type'].unique()
+    unique_user_count = df['User Type'].value_counts()
+    total_counted_user = unique_user_count[0] + unique_user_count[1]
+    actual_user_count = len(df)
+
+    # Displaying statistics on user types
+    print('\n------------ User-Type Statistics ------------')
+    print('{} : {} or {:.3f} %'.format(unique_user[0], unique_user_count[0],
+                                       unique_user_count[0]*100/actual_user_count))
+    print('{} : {} or {:.3f} %'.format(unique_user[1], unique_user_count[1],
+                                       unique_user_count[1]*100/actual_user_count))
+
+    # Displaying statistics for unknown user type
+    if len(unique_user) == 3 and len(unique_user_count) == 3:
+
+        if unique_user[2] == 'Dependent':
+            print('{} : {} or {:.3f} %'.format(unique_user[2], unique_user_count[2],
+                                               unique_user_count[2]*100/actual_user_count))
+        else:
+            print('Unknown : {} or {:.3f} %'.format(unique_user_count[2],
+                                                    unique_user_count[2]*100/actual_user_count))
+
+    elif len(unique_user) == 3 and len(unique_user_count) != 3:
+        other_user_count = actual_user_count - total_counted_user
+
+        if unique_user[2] == 'Dependent':
+            print('{} : {} or {:.3f} %'.format(unique_user[2],
+                                               other_user_count, other_user_count*100/actual_user_count))
+        else:
+            print('Unknown : {} or {:.3f} %'.format(other_user_count, other_user_count*100/actual_user_count))
+
+    print('----------------------------------------------')
+
+    # Calculating and displaying statistics on gender
+    print('\n-------------- Gender Statistics -------------')
+    if 'Gender' not in df.columns:
+        print('No data is found for Gender')
+    else:
+        gender_data = df['Gender'].unique()
+        gender_data_count = df['Gender'].value_counts()
+        total_counted_gender = gender_data_count.sum()
+
+        print('{} : {} or {:.3f} %'.format(gender_data[0], gender_data_count[0],
+                                          gender_data_count[0]*100/actual_user_count))
+        print('{} : {} or {:.3f} %'.format(gender_data[1], gender_data_count[1],
+                                           gender_data_count[1]*100/actual_user_count))
+
+        # Displaying statistics of unknown gender type
+        if total_counted_gender != actual_user_count:
+            unknown_gender_count = actual_user_count - total_counted_gender
+            print('Unknown : {} or {:.3f} %'.format(unknown_gender_count, unknown_gender_count * 100 / actual_user_count))
+    print('----------------------------------------------')
+
+    # Calculating statistics on earliest, most-recent and most common year of birth
+    print('\n------------ Birth Year Statistics -----------')
+
+    if 'Birth Year' not in df.columns:
+        print('No Data is found for Birth Year.')
+    else:
+        most_earliest_birth_year = df.loc[df['Birth Year'].idxmin()]['Birth Year']
+        most_recent_birth_year = df.loc[df['Birth Year'].idxmax()]['Birth Year']
+        most_common_birth_year = df['Birth Year'].mode()[0]
+        most_common_birth_year_counts = (df['Birth Year'] == most_common_birth_year).sum()
+
+        print('Most earliest birth year: ', most_earliest_birth_year)
+        print('Most recent birth year: ', most_recent_birth_year)
+        print('Most common birth year: ', most_common_birth_year)
+        print('Counts: ', most_common_birth_year_counts)
+
+    print('----------------------------------------------')
     print('\nThis took about {} seconds.'.format(time.time() - start_time))
     print('**********************************************')
 
@@ -414,6 +506,7 @@ def main():
         time_stats(df, filters)
         station_stats(df, filters)
         trip_duration_stats(df, filters)
+        user_stats(df, filters)
 
         # To restart or quit program
         restart_program()
