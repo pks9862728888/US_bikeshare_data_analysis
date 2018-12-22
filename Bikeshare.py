@@ -491,8 +491,6 @@ def show_data(df, filters, city):
     if no_of_trip_results_shown_per_page < 1:
         no_of_trip_results_shown_per_page = 1
 
-    print(no_of_trip_results_shown_per_page)
-
     # Asking whether to show data
     while True:
         show = input('\nDo you want to see individual trip data? Type:\n1) Yes\n2) No\n')
@@ -545,23 +543,16 @@ def restart_program():
         restart = input('\nWould you like to restart? Enter:\n1) yes\n2) no\n')
         restart = restart.lower()
 
-        # Decoding mnemonic inputs
+        # Decoding mnemonic inputs and taking required actions
         if restart == '2' or restart == 'no' or restart == 'n':
-            restart = False
-            break
+            print('\n******************THANK YOU*******************\n')
+            quit(0)
         elif restart == '1' or restart == 'yes' or restart == 'y':
-            restart = True
-            break
+            print("\n" * get_terminal_size().lines, end='')
+            main()
+            quit(0)
         else:
             print("Invalid Input. Please type 'y' or 'n'....")
-
-    # Restarting if user want to restart else quitting.
-    if restart:
-        print("\n" * get_terminal_size().lines, end='')
-        main()
-    else:
-        print('\n******************THANK YOU*******************\n')
-        quit(0)
 
 
 def main():
