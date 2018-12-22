@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import time
 import pandas as pd
+import numpy as np
 from shutil import get_terminal_size
 
 CITY_DATA = {'Chicago': 'chicago.csv',
@@ -23,7 +24,7 @@ def get_month(filters):
         return 'All'
 
     while True:
-        month = input('\n\nChoose the month by which you want to filter the data:\n1) January\
+        month = input('\nChoose the month by which you want to filter the data:\n1) January\
         \n2) February\n3) March\n4) April\n5) May\n6) June\n7) All?\nPlease input numbers only(1-7):\n')
         month = month.title()
         months = ['January', 'February', 'March', 'April', 'May', 'June', 'All']
@@ -137,9 +138,10 @@ def get_filters():
             print('\n******************INVALID INPUT*******************')
             print('Please select the city from the available options.')
 
+    print('----------------------------------------------')
     # Asking user which filter to apply and accepting required values
     while True:
-        filters = input('\n\nWould you like to filter the data by:\n1) Month\n2) Day \n3) Both or\n4) None at all?\
+        filters = input('\nWould you like to filter the data by:\n1) Month\n2) Day \n3) Both or\n4) None at all?\
         \nChoose among the available filters(1 - 4):\n')
         filters = filters.title()
 
@@ -163,6 +165,7 @@ def get_filters():
 
             # Providing feedback to users
             print("Okay, We will apply the following filter: ", filters)
+            print('----------------------------------------------')
 
             # Getting values for month and day according to selected filter
             month = get_month(filters)
@@ -172,7 +175,7 @@ def get_filters():
     # Displaying the filters to data:
     print('\n\n****************CHOSEN FILTERS****************')
     print('City: {}\nMonth: {}\nDay: {}'.format(city, month, day))
-    print('**********************************************')
+    print('----------------------------------------------')
 
     return city, month, day, filters
 
@@ -260,7 +263,7 @@ def load_data(city, month, day, filters):
         print('Counts: ', count_popular_day)
 
     print("\nThis took {} seconds.".format(time.time() - start_time))
-    print('**********************************************')
+    print('----------------------------------------------')
 
     print('\n\n***************APPLYING FILTERS***************')
     start_time = time.time()
@@ -281,7 +284,7 @@ def load_data(city, month, day, filters):
 
     print('Total data points after applying filter: ', len(df))
     print("\nThis took {} seconds.".format(time.time() - start_time))
-    print('**********************************************')
+    print('----------------------------------------------')
 
     return df
 
@@ -328,7 +331,7 @@ def time_stats(df, filters):
         print('Counts: ', count_popular_hour)
 
     print('\nThis took about {} seconds'. format(time.time() - start_time))
-    print('**********************************************')
+    print('----------------------------------------------')
 
 
 def station_stats(df, filters):
@@ -352,7 +355,7 @@ def station_stats(df, filters):
     print('\nMost Commonly Used Combination of Start and End Stations: ')
 
     print('\nThis took about {} seconds.'.format(time.time() - start_time))
-    print('**********************************************')
+    print('----------------------------------------------')
 
 
 def trip_duration_stats(df, filters):
@@ -378,18 +381,17 @@ def trip_duration_stats(df, filters):
     print('\nAverage Duration: ', df['Trip Duration'].mean())
 
     print('\nThis took about {} seconds.'.format(time.time() - start_time))
-    print('**********************************************')
+    print('----------------------------------------------')
 
 
 def user_stats(df, filters):
     """
-        Displays statistics on types of users, gender, most recent and most common year of birth.
+    Displays statistics on types of users, gender, most recent and most common year of birth.
 
-        :param:
-            (data frame) df - The data frame after applying filters
-            (str) filters - Filters chosen: Month, Day, Both, or None
-        """
-
+    :param:
+        (data frame) df - The data frame after applying filters
+        (str) filters - Filters chosen: Month, Day, Both, or None
+    """
     print('\n**********************************************')
     print('          Calculating User Statistics')
     print('               Filter: ', filters)
@@ -403,7 +405,7 @@ def user_stats(df, filters):
     actual_user_count = len(df)
 
     # Displaying statistics on user types
-    print('\n------------ User-Type Statistics ------------')
+    print('\n\n------------ User-Type Statistics ------------')
     print('{} : {} or {:.3f} %'.format(unique_user[0], unique_user_count[0],
                                        unique_user_count[0]*100/actual_user_count))
     print('{} : {} or {:.3f} %'.format(unique_user[1], unique_user_count[1],
@@ -431,7 +433,7 @@ def user_stats(df, filters):
     print('----------------------------------------------')
 
     # Calculating and displaying statistics on gender
-    print('\n-------------- Gender Statistics -------------')
+    print('\n\n-------------- Gender Statistics -------------')
     if 'Gender' not in df.columns:
         print('No data is found for Gender')
     else:
@@ -451,7 +453,7 @@ def user_stats(df, filters):
     print('----------------------------------------------')
 
     # Calculating statistics on earliest, most-recent and most common year of birth
-    print('\n------------ Birth Year Statistics -----------')
+    print('\n\n------------ Birth Year Statistics -----------')
 
     if 'Birth Year' not in df.columns:
         print('No Data is found for Birth Year.')
@@ -468,7 +470,69 @@ def user_stats(df, filters):
 
     print('----------------------------------------------')
     print('\nThis took about {} seconds.'.format(time.time() - start_time))
-    print('**********************************************')
+    print('----------------------------------------------')
+
+
+def show_data(df, filters, city):
+    """
+    Displays statistics on types of users, gender, most recent and most common year of birth.
+
+    :param:
+        (data frame) df - The data frame after applying filters
+        (str) filters - Filters chosen: Month, Day, Both, or None
+    """
+
+    # Calculating how many trip data can be shown per page
+    terminal_size = get_terminal_size().lines
+    lines_per_data_set = len(df.iloc[0])
+    no_of_trip_results_shown_per_page = int(terminal_size/lines_per_data_set) - 1
+
+    # Setting minimum trip data shown per page to be 1
+    if no_of_trip_results_shown_per_page < 1:
+        no_of_trip_results_shown_per_page = 1
+
+    print(no_of_trip_results_shown_per_page)
+
+    # Asking whether to show data
+    while True:
+        show = input('\nDo you want to see individual trip data? Type:\n1) Yes\n2) No\n')
+        show = show.lower()
+
+        if show == '1' or show == 'yes' or show == 'y':
+            index = 0
+
+            # Displaying individual trip data
+            print('\n**********************************************')
+            print('       Displaying Individual Trip Data.')
+            print('               City: ', city)
+            print('               Filter: ', filters)
+            print("  Press 'q' to stop seeing individual data.")
+            print('**********************************************\n')
+            while True:
+
+                while index % no_of_trip_results_shown_per_page != 0 or index == 0:
+                    print(df.iloc[index])
+                    print('\n----------------------------------------------\n')
+                    index += 1
+
+                # Asking user whether to see more data points
+                if index % no_of_trip_results_shown_per_page == 0:
+                    show_next = input('Do you want to see more trip data?\n'
+                                      'Press q to exit and any other key to continue:\n')
+                    show_next = show_next.lower()
+
+                    if show_next == 'q':
+                        restart_program()
+                        quit(0)
+                    else:
+                        print(df.iloc[index])
+                        print('\n----------------------------------------------\n')
+                        index += 1
+        elif show == '2' or show == 'no' or show == 'n':
+            break
+        else:
+            print("\nInvalid Input. Please enter 'yes' or 'no'")
+            print('----------------------------------------------')
 
 
 def restart_program():
@@ -477,7 +541,8 @@ def restart_program():
     """
     # Asking user whether to restart the program?
     while True:
-        restart = input('\n\nWould you like to restart? Enter:\n1) yes\n2) no\n')
+        print('----------------------------------------------')
+        restart = input('\nWould you like to restart? Enter:\n1) yes\n2) no\n')
         restart = restart.lower()
 
         # Decoding mnemonic inputs
@@ -487,6 +552,8 @@ def restart_program():
         elif restart == '1' or restart == 'yes' or restart == 'y':
             restart = True
             break
+        else:
+            print("Invalid Input. Please type 'y' or 'n'....")
 
     # Restarting if user want to restart else quitting.
     if restart:
@@ -507,6 +574,7 @@ def main():
         station_stats(df, filters)
         trip_duration_stats(df, filters)
         user_stats(df, filters)
+        show_data(df, filters, city)
 
         # To restart or quit program
         restart_program()
