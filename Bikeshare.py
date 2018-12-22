@@ -355,6 +355,30 @@ def station_stats(df, filters):
     print('**********************************************')
 
 
+def trip_duration_stats(df, filters):
+    """
+    Displays statistics on total and average and total trip duration.
+
+    :param:
+        (data frame) df - The data frame after applying filters
+        (str) filters - Filters chosen: Month, Day, Both, or None
+    """
+
+    print('\n**********************************************')
+    print('          Calculating Trip Duration')
+    print('               Filter: ', filters)
+    print('**********************************************')
+    start_time = time.time()
+
+    # Displaying total time
+    print('Total Duration: ', df['Trip Duration'].sum())
+    print('Counts: ', df['Trip Duration'].count())
+    print('\nAverage Duration: ', df['Trip Duration'].mean())
+
+    print('\nThis took about {} seconds.'.format(time.time() - start_time))
+    print('**********************************************')
+
+
 def restart_program():
     """
     Asks user whether to restart the program. If 'yes' program is restarted else exit from program.
@@ -389,6 +413,7 @@ def main():
         print('\n\n************DISPLAYING STATISTICS*************')
         time_stats(df, filters)
         station_stats(df, filters)
+        trip_duration_stats(df, filters)
 
         # To restart or quit program
         restart_program()
