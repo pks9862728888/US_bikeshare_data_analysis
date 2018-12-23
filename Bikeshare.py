@@ -50,7 +50,6 @@ def get_month(filters):
                 print('Please select any option from (1-7):')
                 continue
         break
-
     return month
 
 
