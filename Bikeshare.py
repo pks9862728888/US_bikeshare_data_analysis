@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 import time
 import pandas as pd
-import numpy as np
 from shutil import get_terminal_size
 
 CITY_DATA = {'Chicago': 'chicago.csv',
@@ -351,8 +350,17 @@ def station_stats(df, filters):
     print('Counts: ', df['Start Station'].value_counts()[0])
     print('\nMost Commonly Used End Station: ', df['End Station'].mode()[0])
     print('Counts: ', df['End Station'].value_counts()[0])
-    print('\nMost Commonly Used Combination of Start and End Stations: ')
+    print('\nMost Commonly Used Combination of Start and End Station: ')
 
+    # Calculating most popular combination of Start and End Stations
+    grouped_data = df.groupby(['Start Station', 'End Station']).size().to_frame('number').reset_index()
+    popular_trip_location_index = grouped_data['number'].idxmax()
+
+    start_station = grouped_data.loc[popular_trip_location_index]['Start Station']
+    end_station = grouped_data.loc[popular_trip_location_index]['End Station']
+    count = grouped_data['number'].max()
+
+    print('Start Station: {}\nEnd Station: {}\nCounts: {}'.format(start_station, end_station, count))
     print('\nThis took about {} seconds.'.format(time.time() - start_time))
     print('----------------------------------------------')
 
