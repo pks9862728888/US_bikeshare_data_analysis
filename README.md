@@ -32,7 +32,7 @@ These statistics are shown on filtered data:~
 Sample execution screenshots:
 -------------------------------------------
 Chosen country: *Chicago*\
-Chosen filter: *both*\
+Chosen filter: *Both*\
 Chosen month: *February*\
 Chosen day: *Tuesday*
 
