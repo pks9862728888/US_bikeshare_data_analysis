@@ -4,7 +4,7 @@ Analysis Of US Bikeshare Data From Motivate
 ### Overview
 This project analyzes the bike-share data of US from Motivate for popular cities Washington, New York, and Chicago; and then shows various statistics according to filter chosen by user. It also shows individual travel data if the user want to see it. Moreover after seeing statistics of a particular station, the user can restart the program to see the statistics of another station or same station with different filters.
 
-**Available Filters**
+#### Available Filters
 
 **Day:** This filters the data by day.
 **Month:** This filters the data by month.
@@ -13,7 +13,7 @@ This project analyzes the bike-share data of US from Motivate for popular cities
 
 *If filter is day, month, or both, then statistics of popular day, month or both are shown respectively before filter is applied*
 
-**Statistics Shown**
+#### Statistics Shown
 
 These statistics are shown on filtered data:~
 
