@@ -449,7 +449,7 @@ def user_stats(df, filters):
         total_counted_gender = gender_data_count.sum()
 
         print('{} : {} or {:.3f} %'.format(gender_data[0], gender_data_count[0],
-                                          gender_data_count[0]*100/actual_user_count))
+                                           gender_data_count[0]*100/actual_user_count))
         print('{} : {} or {:.3f} %'.format(gender_data[1], gender_data_count[1],
                                            gender_data_count[1]*100/actual_user_count))
 
