@@ -498,15 +498,6 @@ def show_data(df, filters, city):
         (str) filters - Filters chosen: Month, Day, Both, or None
     """
 
-    # Calculating how many trip data can be shown per page according to terminal size
-    terminal_size = get_terminal_size().lines
-    lines_per_data_set = len(df.iloc[0])
-    no_of_trip_results_shown_per_page = int(terminal_size/lines_per_data_set) - 1
-
-    # Setting minimum trip data shown per page to be 1
-    if no_of_trip_results_shown_per_page < 1:
-        no_of_trip_results_shown_per_page = 1
-
     # Asking whether to show data
     while True:
         show = input('\nDo you want to see individual trip data? Type:\n1) Yes\n2) No\n')
@@ -524,14 +515,14 @@ def show_data(df, filters, city):
             print('**********************************************\n')
             while True:
 
-                while index % no_of_trip_results_shown_per_page != 0 or index == 0:
+                while index % 5 != 0 or index == 0:
                     print(df.iloc[index])
                     print('\n----------------------------------------------\n')
                     index += 1
 
                 # Asking user whether to see more data points
-                if index % no_of_trip_results_shown_per_page == 0:
-                    show_next = input('Do you want to see more trip data?\n'
+                if index % 5 == 0:
+                    show_next = input('Do you want to see five more trip data?\n'
                                       'Press q to exit and any other key to continue:\n')
                     show_next = show_next.lower()
 
