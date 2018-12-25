@@ -29,10 +29,21 @@ These statistics are shown on filtered data:~
 **User Statistics:** This shows statistics on the types of users, gender of users, most recent, most common, and most earliest birth year of the bike users.
 
 
+Sample execution screenshots:
+-------------------------------------------
+Chosen country: *Chicago*
+Chosen filter: *both*
+Chosen month: *February*
+Chosen day: *Tuesday*
+
+![Chosen Filters]()
+
+
+
 References:
 -------------------------------------------
 1. Clearing the screen: [Link](https://stackoverflow.com/questions/2084508/clear-terminal-in-python)
 2. Counting grouped occurences in dataframe: [Link](https://datascience.stackexchange.com/questions/29840/how-to-count-grouped-occurrences)
 3. Udacity: [Python Foundation Nanodegree](https://in.udacity.com/course/python-foundation-nanodegree--nd002-inpy?utm_source=GoogleSearch&utm_medium=NewAcq&utm_campaign=PR-GoogleSearch-Inpayment-BrandCourse-NewAcq-D-BMM-RLSA&utm_content=BMM&gclid=CjwKCAiAx4fhBRB6EiwA3cV4Ks8nLotobMAv23vHBe6hjE7WguW6oa7jzSK5xLmdX99ZQ66j9ZFd4BoCA8QQAvD_BwE)
 4. Python for Data Analysis by Wes McKinney
-5. Mentor(available in Slack): Sir Vardaan Sharma
+5. Mentor(*available in Slack*): Sir Vardaan Sharma

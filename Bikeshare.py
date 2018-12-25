@@ -1,4 +1,10 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Dec 10 18:18:20 2018
+
+@author: Pran Kumar Sarkar
+"""
 import time
 import pandas as pd
 from shutil import get_terminal_size
@@ -350,7 +356,7 @@ def station_stats(df, filters):
     print('Counts: ', df['Start Station'].value_counts()[0])
     print('\nMost Commonly Used End Station: ', df['End Station'].mode()[0])
     print('Counts: ', df['End Station'].value_counts()[0])
-    print('\nMost Commonly Used Combination of Start and End Station: ')
+    print('\nMost Popular Trip: ')
 
     # Calculating most popular combination of Start and End Stations
     grouped_data = df.groupby(['Start Station', 'End Station']).size().to_frame('number').reset_index()
@@ -380,13 +386,16 @@ def trip_duration_stats(df, filters):
     print('**********************************************')
     start_time = time.time()
 
+    # Calculating trip duration
+    total_trip_duration = df['Trip Duration'].sum()
+    average_trip_duration = df['Trip Duration'].mean()
+
     # Displaying total time
-    print('Total Duration: ', df['Trip Duration'].sum())
+    print('Total Duration: {} seconds'.format(total_trip_duration))
     print('Counts: ', df['Trip Duration'].count())
 
     # Displaying average duration
-    print('\nAverage Duration: ', df['Trip Duration'].mean())
-
+    print('\nAverage Duration: {} seconds'.format(average_trip_duration))
     print('\nThis took about {} seconds.'.format(time.time() - start_time))
     print('----------------------------------------------')
 
@@ -489,7 +498,7 @@ def show_data(df, filters, city):
         (str) filters - Filters chosen: Month, Day, Both, or None
     """
 
-    # Calculating how many trip data can be shown per page
+    # Calculating how many trip data can be shown per page according to terminal size
     terminal_size = get_terminal_size().lines
     lines_per_data_set = len(df.iloc[0])
     no_of_trip_results_shown_per_page = int(terminal_size/lines_per_data_set) - 1
