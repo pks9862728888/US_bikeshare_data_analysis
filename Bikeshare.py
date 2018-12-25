@@ -136,7 +136,7 @@ def get_filters():
 
         # Asking user to input again if unexpected input else continue
         if city == 'Chicago' or city == 'New York' or city == 'Washington':
-            print('Looks like you want to explore the statistics of: ', city)
+            print('\nLooks like you want to explore the statistics of: ', city)
             break
         else:
             print('\n******************INVALID INPUT*******************')
