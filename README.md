@@ -1,9 +1,12 @@
-Analysis Of US Bikeshare Data From Motivate
-===========================================
+Project 1: Analysis Of US Bikeshare Data From Motivate
+======================================================
+### by Pran Kumar Sarkar
+
+US Bikeshare Data analysis project, part of the Udacity [Python Foundation Nanodegree](https://in.udacity.com/course/python-foundation-nanodegree--nd002-inpy).
 
 Overview:
 -------------------------------------------
-This project analyzes the bike-share data of US from Motivate for popular cities Washington, New York, and Chicago; and then shows various statistics according to filter chosen by user. It also shows individual travel data if the user want to see it.
+This project analyzes the bike-share data of US from Motivate for popular cities Washington, New York, and Chicago; and then shows various statistics according to filter chosen by user. It also shows visual statistics and individual travel data if the user want to see it.
 
 Moreover after seeing statistics of a particular station, the user can restart the program to see the statistics of another station or same station with different filters.
 
@@ -28,26 +31,62 @@ These statistics are shown on filtered data:~
 
 **User Statistics:** This shows statistics on the types of bike users, gender of bike users, most recent, most common, and most earliest birth year of the bike users.
 
+## Required Libraries and Dependencies:
 
-Sample execution screenshots:
--------------------------------------------
-Chosen country: *Chicago*\
-Chosen filter: *Both*\
-Chosen month: *February*\
-Chosen day: *Tuesday*
+Python 3.x is required to run this project. The Python executable should be in your default path, in which the Python installer should have set. 
 
-![Choosing country](https://github.com/pks9862728888/US_bikeshare_data_analysis/blob/master/Screenshots/Bikeshare%2000.png)
-![Choosing filters](https://github.com/pks9862728888/US_bikeshare_data_analysis/blob/master/Screenshots/Bikeshare%2001.png)
-![Displaying Time and station statistics](https://github.com/pks9862728888/US_bikeshare_data_analysis/blob/master/Screenshots/Bikeshare%2002.png)
-![Displaying Trip Duration and User Statistics](https://github.com/pks9862728888/US_bikeshare_data_analysis/blob/master/Screenshots/Bikeshare%2003.png)
-![Choosing to see individual trip data](https://github.com/pks9862728888/US_bikeshare_data_analysis/blob/master/Screenshots/Bikeshare%2004.png)
-![Displaying individual trip data](https://github.com/pks9862728888/US_bikeshare_data_analysis/blob/master/Screenshots/Bikeshare%2005.png)
-![Terminating the program](https://github.com/pks9862728888/US_bikeshare_data_analysis/blob/master/Screenshots/Bikeshare%2006.png)
+Additional required packages:
+* **pandas** : ```bash pip install pandas -y```
+* **numpy** : ```bash pip install numpy -y```
+* **seaborn** : ```bash pip install seaborn -y```
+* **matplotlib** : ```bash pip install matplotlib -y```
 
-References:
--------------------------------------------
-1. Clearing the screen: [Stack Overflow Link](https://stackoverflow.com/questions/2084508/clear-terminal-in-python)
-2. Counting grouped occurences in dataframe: [Stack Overflow Link](https://datascience.stackexchange.com/questions/29840/how-to-count-grouped-occurrences)
-3. Udacity: [Python Foundation Nanodegree](https://in.udacity.com/course/python-foundation-nanodegree--nd002-inpy?utm_source=GoogleSearch&utm_medium=NewAcq&utm_campaign=PR-GoogleSearch-Inpayment-BrandCourse-NewAcq-D-BMM-RLSA&utm_content=BMM&gclid=CjwKCAiAx4fhBRB6EiwA3cV4Ks8nLotobMAv23vHBe6hjE7WguW6oa7jzSK5xLmdX99ZQ66j9ZFd4BoCA8QQAvD_BwE)
-4. Python for Data Analysis by Wes McKinney
-5. Mentor(*available in Slack*): Sir Vardaan Sharma
+To install the above packages(*if not installed*) open terminal or command prompt and type in the commands provided above.
+
+## Project contents:
+
+This project consists for the following files:
+
+* **Bikeshare.py** - main Python script to run.
+* **chicago.csv** - contains bikeshare data for Chicago city.
+* **new_york_city.csv** - contains bikeshare data for New York city.
+* **washington.csv** - contains bikeshare data for Washington city.
+* **README.md** - Readme file containing detailed instructions for program execution and project overview.
+* **_config.yml** - Configuration file for github theme.
+
+## Download:
+This project can be downloaded by [clicking here](https://github.com/pks9862728888/US_bikeshare_data_analysis/archive/master.zip) 
+
+## How to Run Project:
+
+Download the project zip file to your computer and unzip the file. Or clone this repository to your desktop by typing the following code in your terminal(*for Linux*) or command prompt(*for windows*):
+
+```bash
+git clone https://github.com/pks9862728888/Movie_trailer_website_generator.git
+```
+
+Navigate to the project directory and type in the following command:
+
+```bash
+python Bikeshare.py
+```
+
+## Extra Credit Description:
+
+The following features were implemented to gain an extra credit from Udacity:
+
+* Added functionality to show popular day and popular month of trip on whole data if data is to be filtered by day or month or both.
+* Shows the number and percentage of data which are missing.
+* Added functionality to visualize the individual statistics in graph.
+
+## References:
+1. [Python Foundation Nanodegree Udacity](https://in.udacity.com/course/python-foundation-nanodegree--nd002-inpy)
+2. [Markdown formatting for README.md](https://help.github.com/articles/basic-writing-and-formatting-syntax/)
+3. [Writing Readme Free Course Udacity](https://classroom.udacity.com/courses/ud777)
+4. [Sample Readme by tsega](https://github.com/tsega/movie-trailer-website/blob/master/README.md)
+5. Clearing the screen: [Stack Overflow Link](https://stackoverflow.com/questions/2084508/clear-terminal-in-python)
+6. Counting grouped occurences in dataframe: [Stack Overflow Link](https://datascience.stackexchange.com/questions/29840/how-to-count-grouped-occurrences)
+7. Python for Data Analysis by Wes McKinney
+8. Mentor(*available in Slack*): Sir Vardaan Sharma
+
+Thank you.
