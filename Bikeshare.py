@@ -8,9 +8,10 @@ Created on Tue Dec 10 18:18:20 2018
 import time
 import numpy as np
 import pandas as pd
-from shutil import get_terminal_size
 import matplotlib.pyplot as plt
 import seaborn as sns
+from shutil import get_terminal_size
+
 
 CITY_DATA = {'Chicago': 'chicago.csv',
              'New York': 'new_york_city.csv',
@@ -456,7 +457,7 @@ def user_stats(df, filters):
     if 'Gender' not in df.columns:
         print('No data is found for Gender')
     else:
-        gender_data = pd.DataFrame(df['Gender'].value_counts(),df['Gender'].unique())
+        gender_data = pd.DataFrame(df['Gender'].value_counts(), df['Gender'].unique())
         gender_data.drop(np.nan, inplace=True)
         gender_data_index = gender_data.index
         total_counted_gender = gender_data['Gender'].sum()
@@ -469,7 +470,8 @@ def user_stats(df, filters):
         # Displaying statistics of unknown gender type
         if total_counted_gender != actual_user_count:
             unknown_gender_count = actual_user_count - total_counted_gender
-            print('Unknown : {} or {:.3f} %'.format(unknown_gender_count, unknown_gender_count * 100 / actual_user_count))
+            print('Unknown : {} or {:.3f} %'.format(unknown_gender_count,
+                                                    unknown_gender_count * 100 / actual_user_count))
     print('----------------------------------------------')
 
     # Calculating statistics on earliest, most-recent and most common year of birth
@@ -545,7 +547,7 @@ def show_data(df, filters, city):
             print('----------------------------------------------')
 
 
-def visualize_data(df, filters, city, month, day):
+def visualize_data(df, filters, city):
     """
     Visualizes different statistics.
 
@@ -553,8 +555,6 @@ def visualize_data(df, filters, city, month, day):
         (data frame) df - The data frame after applying filters
         (str) filters - Filters chosen: Month, Day, Both, or None
         (str) city - The chosen city
-        (str) month - The filtering month
-        (str) day - The filtering day
     """
 
     # Asking whether to show data
@@ -578,7 +578,7 @@ def visualize_data(df, filters, city, month, day):
             
             # Displaying daily travel statistics
             if filters == 'Month' or filters == 'None':
-                plt.figure(figsize=(10,5))
+                plt.figure(figsize=(10, 5))
                 sns.countplot(df['Day'],
                               order=['Sunday', 'Monday', 'Tuesday',
                                      'Wednesday', 'Thursday', 'Friday',
@@ -586,12 +586,12 @@ def visualize_data(df, filters, city, month, day):
                 plt.show()
             
             # Displaying hourly statistics
-            plt.figure(figsize=(10,5))
+            plt.figure(figsize=(10, 5))
             sns.countplot(df['Hour']).set_title('Hourly Travel Statistics('+city+')')
             plt.show()
             
             # Displaying user type statistics
-            plt.figure(figsize=(10,5))
+            plt.figure(figsize=(10, 5))
             df['User Type'].value_counts().plot(kind='bar')
             plt.title('User Type Statistics('+city+')')
             plt.xlabel('User Type')
@@ -602,7 +602,7 @@ def visualize_data(df, filters, city, month, day):
             # Washington does not has gender and birth year data
             if city != 'Washington':
                 # Displaying gender statistics
-                plt.figure(figsize=(10,5))
+                plt.figure(figsize=(10, 5))
                 df['Gender'].value_counts().plot(kind='bar')
                 plt.title('Gender Statistics('+city+')')
                 plt.xlabel('Gender')
@@ -611,7 +611,7 @@ def visualize_data(df, filters, city, month, day):
                 plt.show()
 
                 # Displaying Birth Year Statistics
-                plt.figure(figsize=(15,10))
+                plt.figure(figsize=(15, 10))
                 df['Birth Year'].value_counts(sort=False).plot(kind='bar')
                 plt.title('Birth Year Statistics('+city+')')
                 plt.xlabel('Birth Year')
@@ -654,6 +654,9 @@ def restart_program():
 
 
 def main():
+    """
+    Main function to call other functions to get data, filters, and for showing and visualizing different statistics.
+    """
     while True:
         city, month, day, filters = get_filters()
         df = load_data(city, month, day, filters)
@@ -663,7 +666,7 @@ def main():
         station_stats(df, filters)
         trip_duration_stats(df, filters)
         user_stats(df, filters)
-        visualize_data(df, filters, city, month, day)
+        visualize_data(df, filters, city)
         show_data(df, filters, city)
 
         # To restart or quit program
