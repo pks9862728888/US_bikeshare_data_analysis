@@ -38,10 +38,10 @@ Moreover Time statistics, Station statistics, and User statistics are also shown
 Python 3.x is required to run this project. The Python executable should be in your default path, in which the Python installer should have set. 
 
 Additional required packages:
-* **pandas** : ```bash pip install pandas -y```
-* **numpy** : ```bash pip install numpy -y```
-* **seaborn** : ```bash pip install seaborn -y```
-* **matplotlib** : ```bash pip install matplotlib -y```
+* **pandas** : ```pip install pandas -y```
+* **numpy** : ```pip install numpy -y```
+* **seaborn** : ```pip install seaborn -y```
+* **matplotlib** : ```pip install matplotlib -y```
 
 To install the above packages(*if not installed*) open terminal or command prompt and type in the commands provided above.
 
