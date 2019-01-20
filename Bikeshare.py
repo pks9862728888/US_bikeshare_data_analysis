@@ -34,9 +34,9 @@ def get_month(filters):
 
     while True:
         month = input('\nChoose the month by which you want to filter the data:\n1) January\
-        \n2) February\n3) March\n4) April\n5) May\n6) June\n7) All?\nPlease input numbers only(1-7):\n')
+        \n2) February\n3) March\n4) April\n5) May\n6) June\nPlease input numbers only(1-6):\n')
         month = month.title()
-        months = ['January', 'February', 'March', 'April', 'May', 'June', 'All']
+        months = ['January', 'February', 'March', 'April', 'May', 'June']
 
         # Attempting to decode mnemonic input else prompt for input again
         if month not in months:
@@ -52,8 +52,6 @@ def get_month(filters):
                 month = 'May'
             elif month == '6' or month == 'Jun':
                 month = 'June'
-            elif month == '7':
-                month = 'All'
             else:
                 print('\n******************INVALID INPUT*******************')
                 print('Please select any option from (1-7):')
@@ -78,9 +76,9 @@ def get_day(filters):
 
     while True:
         day = input('\nChoose the day by which you want to filter the data:\n1) Sunday\n2) Monday\n3) Tuesday\
-        \n4) Wednesday\n5) Thursday\n6) Friday\n7) Saturday\n8) All?\nPlease input numbers only(1-8):\n')
+        \n4) Wednesday\n5) Thursday\n6) Friday\n7) Saturday\nPlease input numbers only(1-7):\n')
         day = day.title()
-        days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'All']
+        days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
         # Attempting to decode mnemonic input else prompt for input again
         if day not in days:
@@ -98,8 +96,6 @@ def get_day(filters):
                 day = 'Friday'
             elif day == '7' or day == 'Sat' or day == 'Sa':
                 day = 'Saturday'
-            elif day == '8' or day == 'all':
-                day = 'All'
             else:
                 print('\n******************INVALID INPUT*******************')
                 print('Please select any option from (1-8):')
