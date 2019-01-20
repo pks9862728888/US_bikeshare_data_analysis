@@ -26,13 +26,13 @@ These statistics are shown on filtered data:~
 
 **Trip Duration Statistics:** This shows statistics of the total trip duration and the average trip duration.
 
-**User Statistics:** This shows statistics on the types of users, gender of users, most recent, most common, and most earliest birth year of the bike users.
+**User Statistics:** This shows statistics on the types of bike users, gender of bike users, most recent, most common, and most earliest birth year of the bike users.
 
 
 Sample execution screenshots:
 -------------------------------------------
 Chosen country: *Chicago*\
-Chosen filter: *both*\
+Chosen filter: *Both*\
 Chosen month: *February*\
 Chosen day: *Tuesday*
 
