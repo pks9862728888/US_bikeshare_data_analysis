@@ -31,6 +31,8 @@ These statistics are shown on filtered data:~
 
 **User Statistics:** This shows statistics on the types of bike users, gender of bike users, most recent, most common, and most earliest birth year of the bike users.
 
+Moreover Time statistics, Station statistics, and User statistics are also shown in graphs.
+
 ## Required Libraries and Dependencies:
 
 Python 3.x is required to run this project. The Python executable should be in your default path, in which the Python installer should have set. 
