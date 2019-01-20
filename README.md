@@ -6,7 +6,7 @@ US Bikeshare Data analysis project, part of the Udacity [Python Foundation Nanod
 
 Overview:
 -------------------------------------------
-This project analyzes the bike-share data of US from Motivate for popular cities Washington, New York, and Chicago; and then shows various statistics according to filter chosen by user. It also shows visual statistics and individual travel data if the user want to see it.
+This project analyzes the bike-share data of US from [Motivate](https://www.motivateco.com/) for popular cities Washington, New York, and Chicago; and then shows various statistics according to filter chosen by user. It also shows visual statistics and individual travel data if the user want to see it.
 
 Moreover after seeing statistics of a particular station, the user can restart the program to see the statistics of another station or same station with different filters.
 
