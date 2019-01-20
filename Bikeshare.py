@@ -6,8 +6,11 @@ Created on Tue Dec 10 18:18:20 2018
 @author: Pran Kumar Sarkar
 """
 import time
+import numpy as np
 import pandas as pd
 from shutil import get_terminal_size
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 CITY_DATA = {'Chicago': 'chicago.csv',
              'New York': 'new_york_city.csv',
@@ -453,14 +456,15 @@ def user_stats(df, filters):
     if 'Gender' not in df.columns:
         print('No data is found for Gender')
     else:
-        gender_data = df['Gender'].unique()
-        gender_data_count = df['Gender'].value_counts()
-        total_counted_gender = gender_data_count.sum()
+        gender_data = pd.DataFrame(df['Gender'].value_counts(),df['Gender'].unique())
+        gender_data.drop(np.nan, inplace=True)
+        gender_data_index = gender_data.index
+        total_counted_gender = gender_data['Gender'].sum()
 
-        print('{} : {} or {:.3f} %'.format(gender_data[0], gender_data_count[0],
-                                           gender_data_count[0]*100/actual_user_count))
-        print('{} : {} or {:.3f} %'.format(gender_data[1], gender_data_count[1],
-                                           gender_data_count[1]*100/actual_user_count))
+        print('{} : {} or {:.3f} %'.format(gender_data_index[0], gender_data['Gender'][0],
+                                           gender_data['Gender'][0]*100/actual_user_count))
+        print('{} : {} or {:.3f} %'.format(gender_data_index[1], gender_data['Gender'][1],
+                                           gender_data['Gender'][1]*100/actual_user_count))
 
         # Displaying statistics of unknown gender type
         if total_counted_gender != actual_user_count:
@@ -496,6 +500,7 @@ def show_data(df, filters, city):
     :param:
         (data frame) df - The data frame after applying filters
         (str) filters - Filters chosen: Month, Day, Both, or None
+        (str) city - The city chosen for seeing statistics.
     """
 
     # Asking whether to show data
@@ -523,7 +528,7 @@ def show_data(df, filters, city):
                 # Asking user whether to see more data points
                 if index % 5 == 0:
                     show_next = input('Do you want to see five more trip data?\n'
-                                      'Press q to exit and any other key to continue:\n')
+                                      'Press q to escape and any other key to continue:\n')
                     show_next = show_next.lower()
 
                     if show_next == 'q':
@@ -534,6 +539,92 @@ def show_data(df, filters, city):
                         print('\n----------------------------------------------\n')
                         index += 1
         elif show == '2' or show == 'no' or show == 'n':
+            break
+        else:
+            print("\nInvalid Input. Please enter 'yes' or 'no'")
+            print('----------------------------------------------')
+
+
+def visualize_data(df, filters, city, month, day):
+    """
+    Visualizes different statistics.
+
+    :param:
+        (data frame) df - The data frame after applying filters
+        (str) filters - Filters chosen: Month, Day, Both, or None
+        (str) city - The chosen city
+        (str) month - The filtering month
+        (str) day - The filtering day
+    """
+
+    # Asking whether to show data
+    while True:
+        show = input('\nDo you want to visualize different statistics? Type:\n1) Yes\n2) No\n')
+        show = show.lower()
+
+        if show == '1' or show == 'yes' or show == 'y':
+
+            # Displaying individual statistics
+            print('\n**********************************************')
+            print('       Visualizing different Statistics.')
+            print('               City: ', city)
+            print('               Filter: ', filters)
+            print('  Please wait. This might take a few moments.')
+            print('**********************************************\n')
+            start_time = time.time()
+
+            # Setting style and size of seaborn plots
+            sns.set(style='white', palette='inferno')
+            
+            # Displaying daily travel statistics
+            if filters == 'Month' or filters == 'None':
+                plt.figure(figsize=(10,5))
+                sns.countplot(df['Day'],
+                              order=['Sunday', 'Monday', 'Tuesday',
+                                     'Wednesday', 'Thursday', 'Friday',
+                                     'Saturday']).set_title('Daily Travel Statistics('+city+')')
+                plt.show()
+            
+            # Displaying hourly statistics
+            plt.figure(figsize=(10,5))
+            sns.countplot(df['Hour']).set_title('Hourly Travel Statistics('+city+')')
+            plt.show()
+            
+            # Displaying user type statistics
+            plt.figure(figsize=(10,5))
+            df['User Type'].value_counts().plot(kind='bar')
+            plt.title('User Type Statistics('+city+')')
+            plt.xlabel('User Type')
+            plt.ylabel('Counts')
+            plt.xticks(rotation=0)
+            plt.show()
+            
+            # Washington does not has gender and birth year data
+            if city != 'Washington':
+                # Displaying gender statistics
+                plt.figure(figsize=(10,5))
+                df['Gender'].value_counts().plot(kind='bar')
+                plt.title('Gender Statistics('+city+')')
+                plt.xlabel('Gender')
+                plt.ylabel('Counts')
+                plt.xticks(rotation=0)
+                plt.show()
+
+                # Displaying Birth Year Statistics
+                plt.figure(figsize=(15,10))
+                df['Birth Year'].value_counts(sort=False).plot(kind='bar')
+                plt.title('Birth Year Statistics('+city+')')
+                plt.xlabel('Birth Year')
+                plt.ylabel('Counts')
+                plt.xticks(rotation=45)
+                plt.show()
+            
+            print('----------------------------------------------')
+            print('\nThis took about {} seconds.'.format(time.time() - start_time))
+            print('----------------------------------------------')
+            break
+        elif show == '2' or show == 'no' or show == 'n':
+            print('----------------------------------------------')
             break
         else:
             print("\nInvalid Input. Please enter 'yes' or 'no'")
@@ -572,6 +663,7 @@ def main():
         station_stats(df, filters)
         trip_duration_stats(df, filters)
         user_stats(df, filters)
+        visualize_data(df, filters, city, month, day)
         show_data(df, filters, city)
 
         # To restart or quit program
