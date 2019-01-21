@@ -49,7 +49,7 @@ To install the above packages(*if not installed*) open terminal or command promp
 
 This project consists for the following files:
 
-* **Bikeshare.py** - main Python script to run.
+* **bikeshare.py** - main Python script to run.
 * **chicago.csv** - contains bikeshare data for Chicago city.
 * **new_york_city.csv** - contains bikeshare data for New York city.
 * **washington.csv** - contains bikeshare data for Washington city.
