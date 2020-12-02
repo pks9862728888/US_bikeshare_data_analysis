@@ -149,9 +149,9 @@ def get_filters():
     print('----------------------------------------------')
     # Asking user which filter to apply and accepting required values
     while True:
-        filters = input('\nWould you like to filter the data by:\n\
-        1) Month\n2) Day \n3) Both or\n4) None at all?\
-        \nChoose among the available filters(1 - 4):\n')
+        filters = input('\nWould you like to filter the data by:\n' +
+                        '1) Month\n2) Day \n3) Both or\n4) None at all?' +
+                        '\nChoose among the available filters(1 - 4):\n')
         filters = filters.title()
 
         options = ['1', '2', '3', '4', 'Month', 'Day', 'Both', 'None']
@@ -220,6 +220,34 @@ def common_day(dataframe):
     return day, popular_day
 
 
+def get_day_number(day):
+    """Returns the day number corresponding to day name"""
+    day_dict = {
+        'Sunday': 0,
+        'Monday': 1,
+        'Tuesday': 2,
+        'Wednesday': 3,
+        'Thursday': 4,
+        'Friday': 5,
+        'Saturday': 6
+    }
+    return day_dict[day]
+
+
+def get_day_name(day_number):
+    """Returns the day name corresponding to day number"""
+    day_dict = {
+        0: 'Sunday',
+        1: 'Monday',
+        2: 'Tuesday',
+        3: 'Wednesday',
+        4: 'Thursday',
+        5: 'Friday',
+        6: 'Saturday'
+    }
+    return day_dict[day_number]
+
+
 def load_data(city, month, day, filters):
     """
     Loads data and applies the filters
@@ -248,7 +276,7 @@ def load_data(city, month, day, filters):
 
     # Changing start time to datetime format
     dataframe['Start Time'] = pd.to_datetime(dataframe['Start Time'])
-    dataframe['Day'] = dataframe['Start Time'].dt.weekday_name
+    dataframe['Day'] = dataframe['Start Time'].dt.weekday
     dataframe['Month'] = dataframe['Start Time'].dt.month
     dataframe['Hour'] = dataframe['Start Time'].dt.hour
 
@@ -260,7 +288,7 @@ def load_data(city, month, day, filters):
 
     elif filters == 'Day':
         popular_day, count_popular_day = common_day(dataframe)
-        print('Most popular day for travelling: ', popular_day)
+        print('Most popular day for travelling: ', get_day_name(popular_day))
         print('Counts: ', count_popular_day)
 
     elif filters == 'Both':
@@ -268,7 +296,7 @@ def load_data(city, month, day, filters):
         popular_day, count_popular_day = common_day(dataframe)
         print('\nMost popular month for travelling: ', popular_month)
         print('Counts: ', count_popular_month)
-        print('\nMost popular day for travelling: ', popular_day)
+        print('\nMost popular day for travelling: ', get_day_name(popular_day))
         print('Counts: ', count_popular_day)
 
     print("\nThis took {} seconds.".format(time.time() - start_time))
@@ -283,11 +311,11 @@ def load_data(city, month, day, filters):
         dataframe = dataframe[dataframe['Month'] == months.index(month) + 1]
     elif filters == 'Day':
         print('Filter: Day = ', day)
-        dataframe = dataframe[dataframe['Day'] == day]
+        dataframe = dataframe[dataframe['Day'] == get_day_number(day)]
     elif filters == 'Both':
         print('Filter:\n        Month =  {}\n        Day = {}'.format(month.title(), day))
         dataframe = dataframe[dataframe['Month'] == months.index(month) + 1]
-        dataframe = dataframe[dataframe['Day'] == day]
+        dataframe = dataframe[dataframe['Day'] == get_day_number(day)]
     else:
         print('Filter: ', filters)
 
@@ -321,7 +349,7 @@ def time_stats(dataframe, filters):
     if filters == 'None':
         print('\nMost popular month for travelling: ', popular_month)
         print('Counts: ', count_popular_month)
-        print('\nMost popular day for travelling: ', popular_day)
+        print('\nMost popular day for travelling: ', get_day_name(popular_day))
         print('Counts: ', count_popular_day)
         print('\nMost popular hour of day for travelling: ', popular_hour)
         print('Counts: ', count_popular_hour)
@@ -329,7 +357,7 @@ def time_stats(dataframe, filters):
         print('\nMost popular hour of day for travelling: ', popular_hour)
         print('Counts: ', count_popular_hour)
     elif filters == 'Month':
-        print('\nMost popular day for travelling: ', popular_day)
+        print('\nMost popular day for travelling: ', get_day_name(popular_day))
         print('Counts: ', count_popular_day)
         print('\nMost popular hour of day for travelling: ', popular_hour)
         print('Counts: ', count_popular_hour)
@@ -584,10 +612,8 @@ def visualize_data(dataframe, filters, city):
             # Displaying daily travel statistics
             if filters == 'Month' or filters == 'None':
                 plt.figure(figsize=(10, 5))
-                sns.countplot(dataframe['Day'],
-                              order=['Sunday', 'Monday', 'Tuesday',
-                                     'Wednesday', 'Thursday', 'Friday',
-                                     'Saturday']).set_title('Daily Travel Statistics('+city+')')
+                print(dataframe['Day'])
+                sns.countplot(dataframe['Day']).set_title('Daily Travel Statistics('+city+')')
                 plt.show()
 
             # Displaying hourly statistics
