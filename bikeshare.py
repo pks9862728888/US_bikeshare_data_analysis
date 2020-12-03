@@ -34,8 +34,8 @@ def get_month(filters):
         return 'All'
 
     while True:
-        month = input('\nChoose the month by which you want to filter the data:\n1) January\
-        \n2) February\n3) March\n4) April\n5) May\n6) June\nPlease input numbers only(1-6):\n')
+        month = input('\nChoose the month by which you want to filter the data:\n1) January' +
+                      '\n2) February\n3) March\n4) April\n5) May\n6) June\nPlease input numbers only(1-6):\n')
         month = month.title()
         months = ['January', 'February', 'March', 'April', 'May', 'June']
 
@@ -76,9 +76,9 @@ def get_day(filters):
         return 'All'
 
     while True:
-        day = input('\nChoose the day by which you want to filter the data:\n\
-        1) Sunday\n2) Monday\n3) Tuesday\n4) Wednesday\n5) Thursday\n6) Friday\
-        \n7) Saturday\nPlease input numbers only(1-7):\n')
+        day = input('\nChoose the day by which you want to filter the data:\n' +
+                    '1) Sunday\n2) Monday\n3) Tuesday\n4) Wednesday\n5) Thursday\n6) Friday' +
+                    '\n7) Saturday\nPlease input numbers only(1-7):\n')
         day = day.title()
         days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
