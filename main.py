@@ -439,6 +439,30 @@ def calculate_percentage(count, total_count):
     return count * 100 / total_count
 
 
+def display_statistics_by_type(dataframe, actual_user_count, statistics_type_key):
+    if statistics_type_key not in dataframe.columns:
+        print('No data is found for statistics type: {}'.format(statistics_type_key))
+    else:
+        # Calculating count on key
+        unique_key_count = dataframe[statistics_type_key].value_counts()
+        unique_key_count.dropna(inplace=True)
+        key_data_index = unique_key_count.index
+        total_key_count = unique_key_count.sum()
+
+        # Displaying statistics on user types
+        print('\n------------ {} Statistics ------------'.format(statistics_type_key))
+        for distinct_key in key_data_index.values:
+            key_count = unique_key_count[distinct_key]
+            percentage = calculate_percentage(key_count, actual_user_count)
+            print('{} : {} or {:.3f} %'.format(distinct_key, key_count, percentage))
+
+        # Displaying statistics for unknown user type
+        if total_key_count != actual_user_count:
+            unknown_key_count = actual_user_count - total_key_count
+            percentage = calculate_percentage(unknown_key_count, actual_user_count)
+            print('Unknown : {} or {:.3f} %'.format(unknown_key_count, percentage))
+
+
 def user_stats(dataframe, filters):
     """
     Displays statistics on types of users, gender, most recent and most common year of birth.
@@ -454,52 +478,21 @@ def user_stats(dataframe, filters):
     start_time = time.time()
     actual_user_count = len(dataframe)
 
-    # Calculating count on user types
-    unique_user_count = dataframe['User Type'].value_counts()
-    unique_user_count.dropna(inplace=True)
-    user_data_index = unique_user_count.index
-    total_counted_user = unique_user_count.sum()
-
-    # Displaying statistics on user types
-    print('\n\n------------ User-Type Statistics ------------')
-    for user_type in user_data_index.values:
-        user_type_count = unique_user_count[user_type]
-        user_type_percentage = calculate_percentage(user_type_count, actual_user_count)
-        print('{} : {} or {:.3f} %'.format(user_type, user_type_count, user_type_percentage))
-
-    # Displaying statistics for unknown user type
-    if total_counted_user != actual_user_count:
-        unknown_user_count = actual_user_count - total_counted_user
-        percentage = calculate_percentage(unknown_user_count, actual_user_count)
-        print('Unknown : {} or {:.3f} %'.format(unknown_user_count, percentage))
+    # Display count on user types, gender, birth_year
+    display_statistics_by_type(dataframe, actual_user_count, 'User Type')
+    print('----------------------------------------------')
+    display_statistics_by_type(dataframe, actual_user_count, 'Gender')
+    print('----------------------------------------------')
+    display_birth_year_statistics(dataframe)
 
     print('----------------------------------------------')
-
-    # Calculating and displaying statistics on gender
-    print('\n\n-------------- Gender Statistics -------------')
-    if 'Gender' not in dataframe.columns:
-        print('No data is found for Gender')
-    else:
-        gender_data_count = dataframe['Gender'].value_counts()
-        gender_data_count.dropna(inplace=True)
-        gender_data_index = gender_data_count.index
-        total_counted_gender = gender_data_count.sum()
-
-        for gender in gender_data_index.values:
-            gender_count = gender_data_count[gender]
-            gender_percentage = calculate_percentage(gender_count, actual_user_count)
-            print('{} : {} or {:.3f} %'.format(gender, gender_count, gender_percentage))
-
-        # Displaying statistics of unknown gender type
-        if total_counted_gender != actual_user_count:
-            unknown_gender_count = actual_user_count - total_counted_gender
-            unknown_gender_percentage = calculate_percentage(unknown_gender_count, actual_user_count)
-            print('Unknown : {} or {:.3f} %'.format(unknown_gender_count, unknown_gender_percentage))
+    print('\nThis took about {} seconds.'.format(time.time() - start_time))
     print('----------------------------------------------')
 
+
+def display_birth_year_statistics(dataframe):
     # Calculating statistics on earliest, most-recent and most common year of birth
-    print('\n\n------------ Birth Year Statistics -----------')
-
+    print('\n------------ Birth Year Statistics -----------')
     if 'Birth Year' not in dataframe.columns:
         print('No Data is found for Birth Year.')
     else:
@@ -512,10 +505,6 @@ def user_stats(dataframe, filters):
         print('Most recent birth year: ', most_recent_birth_year)
         print('Most common birth year: ', most_common_birth_year)
         print('Counts: ', most_common_birth_year_counts)
-
-    print('----------------------------------------------')
-    print('\nThis took about {} seconds.'.format(time.time() - start_time))
-    print('----------------------------------------------')
 
 
 def show_data(dataframe, filters, city):
