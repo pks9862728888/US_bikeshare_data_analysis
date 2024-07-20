@@ -9,7 +9,6 @@ import time
 from shutil import get_terminal_size
 
 import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
 import seaborn as sns
 
@@ -673,12 +672,12 @@ def main():
         dataframe = load_data(city, month, day, filters)
 
         print('\n\n************DISPLAYING STATISTICS*************')
-        time_stats(dataframe, filters)
-        station_stats(dataframe, filters)
-        trip_duration_stats(dataframe, filters)
-        user_stats(dataframe, filters)
-        visualize_data(dataframe, filters, city)
-        show_data(dataframe, filters, city)
+        time_stats(dataframe.copy(), filters)
+        station_stats(dataframe.copy(), filters)
+        trip_duration_stats(dataframe.copy(), filters)
+        user_stats(dataframe.copy(), filters)
+        visualize_data(dataframe.copy(), filters, city)
+        show_data(dataframe.copy(), filters, city)
 
         # To restart or quit program
         restart_program()
