@@ -1,0 +1,138 @@
+Hello! Let's explore some US bike-share data.
+
+Choose among the following cities for which you want to see the data:
+1) Chicago
+2) New York
+3) Washington?
+2
+
+Looks like you want to explore the statistics of:  New York
+----------------------------------------------
+
+Would you like to filter the data by:
+1) Month
+2) Day
+3) Both or
+4) None at all?
+Choose among the available filters(1 - 4):
+4
+Okay, We will apply the following filter:  None
+----------------------------------------------
+
+
+****************CHOSEN FILTERS****************
+City: New York
+Month: All
+Day: All
+----------------------------------------------
+
+
+*****************LOADING DATA*****************
+City:  New York
+Total data points found:  300000
+
+This took 1.7252962589263916 seconds.
+----------------------------------------------
+
+
+***************APPLYING FILTERS***************
+Filter:  None
+Total data points after applying filter:  300000
+
+This took 0.0009930133819580078 seconds.
+----------------------------------------------
+
+
+************DISPLAYING STATISTICS*************
+**********************************************
+  Calculating Most Frequent Times Of Travel
+               Filter:  None
+**********************************************
+
+Most popular month for travelling:  June
+Counts:  76022
+
+Most popular day for travelling:  Tuesday
+Counts:  52087
+
+Most popular hour of day for travelling:  17
+Counts:  30041
+
+This took about 0.01399683952331543 seconds
+----------------------------------------------
+
+**********************************************
+  Calculating Most Popular Stations & Trips
+               Filter:  None
+**********************************************
+Most Commonly Used Start Station:  Pershing Square North
+Counts:  3069
+
+Most Commonly Used End Station:  Pershing Square North
+Counts:  3077
+
+Most Popular Trip:
+Start Station: E 7 St & Avenue A
+End Station: Cooper Square & E 7 St
+Counts: 168
+
+This took about 0.35871148109436035 seconds.
+----------------------------------------------
+
+**********************************************
+          Calculating Trip Duration
+               Filter:  None
+**********************************************
+Total Duration: 269905248 seconds
+Counts:  300000
+
+Average Duration: 899.68416 seconds
+
+This took about 0.00400090217590332 seconds.
+----------------------------------------------
+
+**********************************************
+          Calculating User Statistics
+               Filter:  None
+**********************************************
+
+------------ User Type Statistics ------------
+Subscriber : 269149 or 89.716 %
+Customer : 30159 or 10.053 %
+Unknown : 692 or 0.231 %
+----------------------------------------------
+
+------------ Gender Statistics ------------
+Male : 204008 or 68.003 %
+Female : 66783 or 22.261 %
+Unknown : 29209 or 9.736 %
+----------------------------------------------
+
+------------ Birth Year Statistics -----------
+Most earliest birth year:  1885.0
+Most recent birth year:  2001.0
+Most common birth year:  1989.0
+Counts:  11126
+----------------------------------------------
+
+This took about 0.0723567008972168 seconds.
+----------------------------------------------
+
+Do you want to visualize different statistics? Type:
+1) Yes
+2) No
+2
+----------------------------------------------
+
+Do you want to see individual trip data? Type:
+1) Yes
+2) No
+2
+----------------------------------------------
+
+Would you like to restart? Enter:
+1) yes
+2) no
+2
+
+******************THANK YOU*******************

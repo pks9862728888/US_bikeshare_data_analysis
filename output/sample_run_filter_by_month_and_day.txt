@@ -1,0 +1,510 @@
+Hello! Let's explore some US bike-share data.
+
+Choose among the following cities for which you want to see the data:
+1) Chicago
+2) New York
+3) Washington?
+3
+
+Looks like you want to explore the statistics of:  Washington
+----------------------------------------------
+
+Would you like to filter the data by:
+1) Month
+2) Day
+3) Both or
+4) None at all?
+Choose among the available filters(1 - 4):
+3
+Okay, We will apply the following filter:  Both
+----------------------------------------------
+
+Choose the month by which you want to filter the data:
+1) January
+2) February
+3) March
+4) April
+5) May
+6) June
+Please input numbers only(1-6):
+1
+
+Choose the day by which you want to filter the data:
+1) Sunday
+2) Monday
+3) Tuesday
+4) Wednesday
+5) Thursday
+6) Friday
+7) Saturday
+Please input numbers only(1-7):
+6
+
+
+****************CHOSEN FILTERS****************
+City: Washington
+Month: January
+Day: Friday
+----------------------------------------------
+
+
+*****************LOADING DATA*****************
+City:  Washington
+Total data points found:  300000
+
+Most popular month for travelling:  June
+Counts:  68339
+
+Most popular day for travelling:  Tuesday
+Counts:  48156
+
+This took 1.7434167861938477 seconds.
+----------------------------------------------
+
+
+***************APPLYING FILTERS***************
+Filter:
+        Month =  January
+        Day = Friday
+Total data points after applying filter:  3015
+
+This took 0.03514218330383301 seconds.
+----------------------------------------------
+
+
+************DISPLAYING STATISTICS*************
+**********************************************
+  Calculating Most Frequent Times Of Travel
+               Filter:  Both
+**********************************************
+
+Most popular hour of day for travelling:  15
+Counts:  299
+
+This took about 0.0029969215393066406 seconds
+----------------------------------------------
+
+**********************************************
+  Calculating Most Popular Stations & Trips
+               Filter:  Both
+**********************************************
+Most Commonly Used Start Station:  Lincoln Memorial
+Counts:  49
+
+Most Commonly Used End Station:  4th & E St SW
+Counts:  66
+
+Most Popular Trip:
+Start Station: Calvert St & Woodley Pl NW
+End Station: Adams Mill & Columbia Rd NW
+Counts: 8
+
+This took about 0.01302790641784668 seconds.
+----------------------------------------------
+
+**********************************************
+          Calculating Trip Duration
+               Filter:  Both
+**********************************************
+Total Duration: 4137890.8880000003 seconds
+Counts:  3015
+
+Average Duration: 1372.4347887230515 seconds
+
+This took about 0.0 seconds.
+----------------------------------------------
+
+**********************************************
+          Calculating User Statistics
+               Filter:  Both
+**********************************************
+
+------------ User Type Statistics ------------
+Subscriber : 2120 or 70.315 %
+Customer : 895 or 29.685 %
+----------------------------------------------
+No data is found for statistics type: Gender
+----------------------------------------------
+
+------------ Birth Year Statistics -----------
+No Data is found for Birth Year.
+----------------------------------------------
+
+This took about 0.0009975433349609375 seconds.
+----------------------------------------------
+
+Do you want to visualize different statistics? Type:
+1) Yes
+2) No
+2
+----------------------------------------------
+
+Do you want to see individual trip data? Type:
+1) Yes
+2) No
+2
+----------------------------------------------
+
+Would you like to restart? Enter:
+1) yes
+2) no
+1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Hello! Let's explore some US bike-share data.
+
+Choose among the following cities for which you want to see the data:
+1) Chicago
+2) New York
+3) Washington?
+2
+
+Looks like you want to explore the statistics of:  New York
+----------------------------------------------
+
+Would you like to filter the data by:
+1) Month
+2) Day
+3) Both or
+4) None at all?
+Choose among the available filters(1 - 4):
+3
+Okay, We will apply the following filter:  Both
+----------------------------------------------
+
+Choose the month by which you want to filter the data:
+1) January
+2) February
+3) March
+4) April
+5) May
+6) June
+Please input numbers only(1-6):
+1
+
+Choose the day by which you want to filter the data:
+1) Sunday
+2) Monday
+3) Tuesday
+4) Wednesday
+5) Thursday
+6) Friday
+7) Saturday
+Please input numbers only(1-7):
+6
+
+
+****************CHOSEN FILTERS****************
+City: New York
+Month: January
+Day: Friday
+----------------------------------------------
+
+
+*****************LOADING DATA*****************
+City:  New York
+Total data points found:  300000
+
+Most popular month for travelling:  June
+Counts:  76022
+
+Most popular day for travelling:  Tuesday
+Counts:  52087
+
+This took 1.7008154392242432 seconds.
+----------------------------------------------
+
+
+***************APPLYING FILTERS***************
+Filter:
+        Month =  January
+        Day = Friday
+Total data points after applying filter:  2887
+
+This took 0.03297305107116699 seconds.
+----------------------------------------------
+
+
+************DISPLAYING STATISTICS*************
+**********************************************
+  Calculating Most Frequent Times Of Travel
+               Filter:  Both
+**********************************************
+
+Most popular hour of day for travelling:  12
+Counts:  296
+
+This took about 0.001001596450805664 seconds
+----------------------------------------------
+
+**********************************************
+  Calculating Most Popular Stations & Trips
+               Filter:  Both
+**********************************************
+Most Commonly Used Start Station:  1 Ave & E 16 St
+Counts:  29
+
+Most Commonly Used End Station:  E 17 St & Broadway
+Counts:  33
+
+Most Popular Trip:
+Start Station: Central Park North & Adam Clayton Powell Blvd
+End Station: Central Park North & Adam Clayton Powell Blvd
+Counts: 4
+
+This took about 0.011000871658325195 seconds.
+----------------------------------------------
+
+**********************************************
+          Calculating Trip Duration
+               Filter:  Both
+**********************************************
+Total Duration: 2442599 seconds
+Counts:  2887
+
+Average Duration: 846.0682369241428 seconds
+
+This took about 0.0011110305786132812 seconds.
+----------------------------------------------
+
+**********************************************
+          Calculating User Statistics
+               Filter:  Both
+**********************************************
+
+------------ User Type Statistics ------------
+Subscriber : 2707 or 93.765 %
+Customer : 160 or 5.542 %
+Unknown : 20 or 0.693 %
+----------------------------------------------
+
+------------ Gender Statistics ------------
+Male : 2026 or 70.177 %
+Female : 659 or 22.826 %
+Unknown : 202 or 6.997 %
+----------------------------------------------
+
+------------ Birth Year Statistics -----------
+Most earliest birth year:  1885.0
+Most recent birth year:  2000.0
+Most common birth year:  1989.0
+Counts:  128
+----------------------------------------------
+
+This took about 0.0029964447021484375 seconds.
+----------------------------------------------
+
+Do you want to visualize different statistics? Type:
+1) Yes
+2) No
+2
+----------------------------------------------
+
+Do you want to see individual trip data? Type:
+1) Yes
+2) No
+1
+
+**********************************************
+       Displaying Individual Trip Data.
+               City:  New York
+               Filter:  Both
+  Press 'q' to stop seeing individual data.
+**********************************************
+
+Unnamed: 0                          642530
+Start Time             2017-01-28 16:32:30
+End Time               2017-01-28 16:53:55
+Trip Duration                         1284
+Start Station    Cathedral Pkwy & Broadway
+End Station         Central Park S & 6 Ave
+User Type                       Subscriber
+Gender                                Male
+Birth Year                          1974.0
+Day                                      5
+Month                                    1
+Hour                                    16
+Name: 37, dtype: object
+
+----------------------------------------------
+
+Unnamed: 0                    638046
+Start Time       2017-01-28 13:52:24
+End Time         2017-01-28 13:56:03
+Trip Duration                    218
+Start Station        9 Ave & W 22 St
+End Station          W 20 St & 7 Ave
+User Type                 Subscriber
+Gender                        Female
+Birth Year                    1968.0
+Day                                5
+Month                              1
+Hour                              13
+Name: 319, dtype: object
+
+----------------------------------------------
+
+Unnamed: 0                    629185
+Start Time       2017-01-28 07:37:24
+End Time         2017-01-28 07:39:02
+Trip Duration                     97
+Start Station        2 Ave & E 31 St
+End Station          E 31 St & 3 Ave
+User Type                 Subscriber
+Gender                        Female
+Birth Year                    1982.0
+Day                                5
+Month                              1
+Hour                               7
+Name: 492, dtype: object
+
+----------------------------------------------
+
+Unnamed: 0                    128154
+Start Time       2017-01-07 10:29:39
+End Time         2017-01-07 10:39:28
+Trip Duration                    588
+Start Station      E 6 St & Avenue D
+End Station        E 7 St & Avenue A
+User Type                 Subscriber
+Gender                          Male
+Birth Year                    1975.0
+Day                                5
+Month                              1
+Hour                              10
+Name: 539, dtype: object
+
+----------------------------------------------
+
+Unnamed: 0                      648040
+Start Time         2017-01-28 21:23:26
+End Time           2017-01-28 21:34:02
+Trip Duration                      636
+Start Station    Spruce St & Nassau St
+End Station            E 11 St & 1 Ave
+User Type                   Subscriber
+Gender                            Male
+Birth Year                      1985.0
+Day                                  5
+Month                                1
+Hour                                21
+Name: 608, dtype: object
+
+----------------------------------------------
+
+Do you want to see five more trip data?
+Press q to escape and any other key to continue:
+y
+Unnamed: 0                    462174
+Start Time       2017-01-21 14:16:52
+End Time         2017-01-21 14:22:05
+Trip Duration                    313
+Start Station       W 52 St & 11 Ave
+End Station       W 42 St & Dyer Ave
+User Type                 Subscriber
+Gender                          Male
+Birth Year                    1960.0
+Day                                5
+Month                              1
+Hour                              14
+Name: 693, dtype: object
+
+----------------------------------------------
+
+Unnamed: 0                    291474
+Start Time       2017-01-14 14:56:52
+End Time         2017-01-14 14:58:40
+Trip Duration                    108
+Start Station     E 32 St & Park Ave
+End Station          E 31 St & 3 Ave
+User Type                 Subscriber
+Gender                        Female
+Birth Year                    1951.0
+Day                                5
+Month                              1
+Hour                              14
+Name: 944, dtype: object
+
+----------------------------------------------
+
+Unnamed: 0                                 456039
+Start Time                    2017-01-21 11:33:04
+End Time                      2017-01-21 11:36:08
+Trip Duration                                 183
+Start Station    Grand Army Plaza & Plaza St West
+End Station                       7 Ave & Park Pl
+User Type                              Subscriber
+Gender                                       Male
+Birth Year                                 1990.0
+Day                                             5
+Month                                           1
+Hour                                           11
+Name: 1080, dtype: object
+
+----------------------------------------------
+
+Unnamed: 0                    636702
+Start Time       2017-01-28 13:07:30
+End Time         2017-01-28 13:14:53
+Trip Duration                    443
+Start Station       11 Ave & W 59 St
+End Station          W 42 St & 8 Ave
+User Type                 Subscriber
+Gender                          Male
+Birth Year                    1982.0
+Day                                5
+Month                              1
+Hour                              13
+Name: 1116, dtype: object
+
+----------------------------------------------
+
+Unnamed: 0                    129601
+Start Time       2017-01-07 17:38:34
+End Time         2017-01-07 18:14:14
+Trip Duration                   2140
+Start Station       W 46 St & 11 Ave
+End Station          E 11 St & 2 Ave
+User Type                 Subscriber
+Gender                          Male
+Birth Year                    1969.0
+Day                                5
+Month                              1
+Hour                              17
+Name: 1201, dtype: object
+
+----------------------------------------------
+
+Do you want to see five more trip data?
+Press q to escape and any other key to continue:
+q
+----------------------------------------------
+
+Would you like to restart? Enter:
+1) yes
+2) no
+2
+
+******************THANK YOU*******************

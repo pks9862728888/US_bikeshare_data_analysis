@@ -7,11 +7,10 @@ Created on Tue Dec 10 18:18:20 2018
 """
 import time
 from shutil import get_terminal_size
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 
+import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
 
 CITY_DATA = {'Chicago': 'chicago.csv',
              'New York': 'new_york_city.csv',
@@ -200,7 +199,7 @@ def common_month(dataframe):
     months = ['January', 'February', 'March', 'April', 'May', 'June']
     month = dataframe['Month'].mode()[0]
 
-    month = months[month-1]
+    month = months[month - 1]
     popular_month_count = (dataframe['Month'] == months.index(month) + 1).sum()
 
     return month, popular_month_count
@@ -367,7 +366,7 @@ def time_stats(dataframe, filters):
         print('\nMost popular hour of day for travelling: ', popular_hour)
         print('Counts: ', count_popular_hour)
 
-    print('\nThis took about {} seconds'. format(time.time() - start_time))
+    print('\nThis took about {} seconds'.format(time.time() - start_time))
     print('----------------------------------------------')
 
 
@@ -386,14 +385,14 @@ def station_stats(dataframe, filters):
     start_time = time.time()
 
     print('Most Commonly Used Start Station: ', dataframe['Start Station'].mode()[0])
-    print('Counts: ', dataframe['Start Station'].value_counts()[0])
+    print('Counts: ', dataframe['Start Station'].value_counts().iloc[0])
     print('\nMost Commonly Used End Station: ', dataframe['End Station'].mode()[0])
-    print('Counts: ', dataframe['End Station'].value_counts()[0])
+    print('Counts: ', dataframe['End Station'].value_counts().iloc[0])
     print('\nMost Popular Trip: ')
 
     # Calculating most popular combination of Start and End Stations
     grouped_data = dataframe.groupby(['Start Station',
-                               'End Station']).size().to_frame('number').reset_index()
+                                      'End Station']).size().to_frame('number').reset_index()
     popular_trip_location_index = grouped_data['number'].idxmax()
 
     start_station = grouped_data.loc[popular_trip_location_index]['Start Station']
@@ -435,6 +434,34 @@ def trip_duration_stats(dataframe, filters):
     print('----------------------------------------------')
 
 
+def calculate_percentage(count, total_count):
+    return count * 100 / total_count
+
+
+def display_statistics_by_type(dataframe, actual_user_count, statistics_type_key):
+    if statistics_type_key not in dataframe.columns:
+        print('No data is found for statistics type: {}'.format(statistics_type_key))
+    else:
+        # Calculating count on key
+        unique_key_count = dataframe[statistics_type_key].value_counts()
+        unique_key_count.dropna(inplace=True)
+        key_data_index = unique_key_count.index
+        total_key_count = unique_key_count.sum()
+
+        # Displaying statistics on user types
+        print('\n------------ {} Statistics ------------'.format(statistics_type_key))
+        for distinct_key in key_data_index.values:
+            key_count = unique_key_count[distinct_key]
+            percentage = calculate_percentage(key_count, actual_user_count)
+            print('{} : {} or {:.3f} %'.format(distinct_key, key_count, percentage))
+
+        # Displaying statistics for unknown user type
+        if total_key_count != actual_user_count:
+            unknown_key_count = actual_user_count - total_key_count
+            percentage = calculate_percentage(unknown_key_count, actual_user_count)
+            print('Unknown : {} or {:.3f} %'.format(unknown_key_count, percentage))
+
+
 def user_stats(dataframe, filters):
     """
     Displays statistics on types of users, gender, most recent and most common year of birth.
@@ -448,68 +475,23 @@ def user_stats(dataframe, filters):
     print('               Filter: ', filters)
     print('**********************************************')
     start_time = time.time()
-
-    # Calculating count on user types
-    unique_user = dataframe['User Type'].unique()
-    unique_user_count = dataframe['User Type'].value_counts()
-    total_counted_user = unique_user_count[0] + unique_user_count[1]
     actual_user_count = len(dataframe)
 
-    # Displaying statistics on user types
-    print('\n\n------------ User-Type Statistics ------------')
-    print('{} : {} or {:.3f} %'.format(unique_user[0], unique_user_count[0],
-                                       unique_user_count[0]*100/actual_user_count))
-    print('{} : {} or {:.3f} %'.format(unique_user[1], unique_user_count[1],
-                                       unique_user_count[1]*100/actual_user_count))
-
-    # Displaying statistics for unknown user type
-    if len(unique_user) == 3 and len(unique_user_count) == 3:
-
-        if unique_user[2] == 'Dependent':
-            print('{} : {} or {:.3f} %'.format(unique_user[2], unique_user_count[2],
-                                               unique_user_count[2]*100/actual_user_count))
-        else:
-            print('Unknown : {} or {:.3f} %'.format(unique_user_count[2],
-                                                    unique_user_count[2]*100/actual_user_count))
-
-    elif len(unique_user) == 3 and len(unique_user_count) != 3:
-        other_user_count = actual_user_count - total_counted_user
-
-        if unique_user[2] == 'Dependent':
-            print('{} : {} or {:.3f} %'.format(unique_user[2],
-                                               other_user_count,
-                                               other_user_count*100/actual_user_count))
-        else:
-            print('Unknown : {} or {:.3f} %'.format(other_user_count,
-                                                    other_user_count*100/actual_user_count))
+    # Display count on user types, gender, birth_year
+    display_statistics_by_type(dataframe, actual_user_count, 'User Type')
+    print('----------------------------------------------')
+    display_statistics_by_type(dataframe, actual_user_count, 'Gender')
+    print('----------------------------------------------')
+    display_birth_year_statistics(dataframe)
 
     print('----------------------------------------------')
-
-    # Calculating and displaying statistics on gender
-    print('\n\n-------------- Gender Statistics -------------')
-    if 'Gender' not in dataframe.columns:
-        print('No data is found for Gender')
-    else:
-        gender_data = pd.DataFrame(dataframe['Gender'].value_counts(), dataframe['Gender'].unique())
-        gender_data.drop(np.nan, inplace=True)
-        gender_data_index = gender_data.index
-        total_counted_gender = gender_data['Gender'].sum()
-
-        print('{} : {} or {:.3f} %'.format(gender_data_index[0], gender_data['Gender'][0],
-                                           gender_data['Gender'][0]*100/actual_user_count))
-        print('{} : {} or {:.3f} %'.format(gender_data_index[1], gender_data['Gender'][1],
-                                           gender_data['Gender'][1]*100/actual_user_count))
-
-        # Displaying statistics of unknown gender type
-        if total_counted_gender != actual_user_count:
-            unknown_gender_count = actual_user_count - total_counted_gender
-            print('Unknown : {} or {:.3f} %'.format(unknown_gender_count,
-                                                    unknown_gender_count * 100 / actual_user_count))
+    print('\nThis took about {} seconds.'.format(time.time() - start_time))
     print('----------------------------------------------')
 
+
+def display_birth_year_statistics(dataframe):
     # Calculating statistics on earliest, most-recent and most common year of birth
-    print('\n\n------------ Birth Year Statistics -----------')
-
+    print('\n------------ Birth Year Statistics -----------')
     if 'Birth Year' not in dataframe.columns:
         print('No Data is found for Birth Year.')
     else:
@@ -522,10 +504,6 @@ def user_stats(dataframe, filters):
         print('Most recent birth year: ', most_recent_birth_year)
         print('Most common birth year: ', most_common_birth_year)
         print('Counts: ', most_common_birth_year_counts)
-
-    print('----------------------------------------------')
-    print('\nThis took about {} seconds.'.format(time.time() - start_time))
-    print('----------------------------------------------')
 
 
 def show_data(dataframe, filters, city):
@@ -610,41 +588,46 @@ def visualize_data(dataframe, filters, city):
             sns.set(style='white', palette='inferno')
 
             # Displaying daily travel statistics
+            print('Displaying daily travel statistics...')
             if filters == 'Month' or filters == 'None':
                 plt.figure(figsize=(10, 5))
                 print(dataframe['Day'])
-                sns.countplot(dataframe['Day']).set_title('Daily Travel Statistics('+city+')')
+                sns.countplot(dataframe['Day']).set_title('Daily Travel Statistics(' + city + ')')
                 plt.show()
 
             # Displaying hourly statistics
+            print('Displaying hourly travel statistics...')
             plt.figure(figsize=(10, 5))
-            sns.countplot(dataframe['Hour']).set_title('Hourly Travel Statistics('+city+')')
+            sns.countplot(dataframe['Hour']).set_title('Hourly Travel Statistics(' + city + ')')
             plt.show()
 
             # Displaying user type statistics
+            print('Displaying statistics on user type...')
             plt.figure(figsize=(10, 5))
             dataframe['User Type'].value_counts().plot(kind='bar')
-            plt.title('User Type Statistics('+city+')')
+            plt.title('User Type Statistics(' + city + ')')
             plt.xlabel('User Type')
             plt.ylabel('Counts')
             plt.xticks(rotation=0)
             plt.show()
 
-            # Washington does not has gender and birth year data
+            # Washington does not have gender and birth year data
             if city != 'Washington':
                 # Displaying gender statistics
+                print('Displaying gender statistics...')
                 plt.figure(figsize=(10, 5))
                 dataframe['Gender'].value_counts().plot(kind='bar')
-                plt.title('Gender Statistics('+city+')')
+                plt.title('Gender Statistics(' + city + ')')
                 plt.xlabel('Gender')
                 plt.ylabel('Counts')
                 plt.xticks(rotation=0)
                 plt.show()
 
                 # Displaying Birth Year Statistics
+                print('Displaying birth year statistics...')
                 plt.figure(figsize=(15, 10))
                 dataframe['Birth Year'].value_counts(sort=False).plot(kind='bar')
-                plt.title('Birth Year Statistics('+city+')')
+                plt.title('Birth Year Statistics(' + city + ')')
                 plt.xlabel('Birth Year')
                 plt.ylabel('Counts')
                 plt.xticks(rotation=45)
@@ -694,12 +677,12 @@ def main():
         dataframe = load_data(city, month, day, filters)
 
         print('\n\n************DISPLAYING STATISTICS*************')
-        time_stats(dataframe, filters)
-        station_stats(dataframe, filters)
-        trip_duration_stats(dataframe, filters)
-        user_stats(dataframe, filters)
-        visualize_data(dataframe, filters, city)
-        show_data(dataframe, filters, city)
+        time_stats(dataframe.copy(), filters)
+        station_stats(dataframe.copy(), filters)
+        trip_duration_stats(dataframe.copy(), filters)
+        user_stats(dataframe.copy(), filters)
+        visualize_data(dataframe.copy(), filters, city)
+        show_data(dataframe.copy(), filters, city)
 
         # To restart or quit program
         restart_program()

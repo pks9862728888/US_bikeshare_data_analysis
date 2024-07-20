@@ -1,0 +1,147 @@
+Hello! Let's explore some US bike-share data.
+
+Choose among the following cities for which you want to see the data:
+1) Chicago
+2) New York
+3) Washington?
+1
+
+Looks like you want to explore the statistics of:  Chicago
+----------------------------------------------
+
+Would you like to filter the data by:
+1) Month
+2) Day
+3) Both or
+4) None at all?
+Choose among the available filters(1 - 4):
+1
+Okay, We will apply the following filter:  Month
+----------------------------------------------
+
+Choose the month by which you want to filter the data:
+1) January
+2) February
+3) March
+4) April
+5) May
+6) June
+Please input numbers only(1-6):
+1
+
+
+****************CHOSEN FILTERS****************
+City: Chicago
+Month: January
+Day: All
+----------------------------------------------
+
+
+*****************LOADING DATA*****************
+City:  Chicago
+Total data points found:  300000
+Most popular month for travelling:  June
+Counts:  98081
+
+This took 1.838850736618042 seconds.
+----------------------------------------------
+
+
+***************APPLYING FILTERS***************
+Filter:
+        Month =  January
+Total data points after applying filter:  21809
+
+This took 0.03599715232849121 seconds.
+----------------------------------------------
+
+
+************DISPLAYING STATISTICS*************
+**********************************************
+  Calculating Most Frequent Times Of Travel
+               Filter:  Month
+**********************************************
+
+Most popular day for travelling:  Monday
+Counts:  4527
+
+Most popular hour of day for travelling:  17
+Counts:  2672
+
+This took about 0.002996683120727539 seconds
+----------------------------------------------
+
+**********************************************
+  Calculating Most Popular Stations & Trips
+               Filter:  Month
+**********************************************
+Most Commonly Used Start Station:  Clinton St & Washington Blvd
+Counts:  420
+
+Most Commonly Used End Station:  Clinton St & Washington Blvd
+Counts:  466
+
+Most Popular Trip:
+Start Station: LaSalle St & Jackson Blvd
+End Station: Canal St & Madison St
+Counts: 29
+
+This took about 0.031107187271118164 seconds.
+----------------------------------------------
+
+**********************************************
+          Calculating Trip Duration
+               Filter:  Month
+**********************************************
+Total Duration: 14826150 seconds
+Counts:  21809
+
+Average Duration: 679.8179650602962 seconds
+
+This took about 0.0 seconds.
+----------------------------------------------
+
+**********************************************
+          Calculating User Statistics
+               Filter:  Month
+**********************************************
+
+------------ User Type Statistics ------------
+Subscriber : 20794 or 95.346 %
+Customer : 1015 or 4.654 %
+----------------------------------------------
+
+------------ Gender Statistics ------------
+Male : 16745 or 76.780 %
+Female : 4059 or 18.612 %
+Unknown : 1005 or 4.608 %
+----------------------------------------------
+
+------------ Birth Year Statistics -----------
+Most earliest birth year:  1899.0
+Most recent birth year:  2000.0
+Most common birth year:  1989.0
+Counts:  1245
+----------------------------------------------
+
+This took about 0.011127710342407227 seconds.
+----------------------------------------------
+
+Do you want to visualize different statistics? Type:
+1) Yes
+2) No
+2
+----------------------------------------------
+
+Do you want to see individual trip data? Type:
+1) Yes
+2) No
+2
+----------------------------------------------
+
+Would you like to restart? Enter:
+1) yes
+2) no
+2
+
+******************THANK YOU*******************
