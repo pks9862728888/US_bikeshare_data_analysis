@@ -588,6 +588,7 @@ def visualize_data(dataframe, filters, city):
             sns.set(style='white', palette='inferno')
 
             # Displaying daily travel statistics
+            print('Displaying daily travel statistics...')
             if filters == 'Month' or filters == 'None':
                 plt.figure(figsize=(10, 5))
                 print(dataframe['Day'])
@@ -595,11 +596,13 @@ def visualize_data(dataframe, filters, city):
                 plt.show()
 
             # Displaying hourly statistics
+            print('Displaying hourly travel statistics...')
             plt.figure(figsize=(10, 5))
             sns.countplot(dataframe['Hour']).set_title('Hourly Travel Statistics(' + city + ')')
             plt.show()
 
             # Displaying user type statistics
+            print('Displaying statistics on user type...')
             plt.figure(figsize=(10, 5))
             dataframe['User Type'].value_counts().plot(kind='bar')
             plt.title('User Type Statistics(' + city + ')')
@@ -608,9 +611,10 @@ def visualize_data(dataframe, filters, city):
             plt.xticks(rotation=0)
             plt.show()
 
-            # Washington does not has gender and birth year data
+            # Washington does not have gender and birth year data
             if city != 'Washington':
                 # Displaying gender statistics
+                print('Displaying gender statistics...')
                 plt.figure(figsize=(10, 5))
                 dataframe['Gender'].value_counts().plot(kind='bar')
                 plt.title('Gender Statistics(' + city + ')')
@@ -620,6 +624,7 @@ def visualize_data(dataframe, filters, city):
                 plt.show()
 
                 # Displaying Birth Year Statistics
+                print('Displaying birth year statistics...')
                 plt.figure(figsize=(15, 10))
                 dataframe['Birth Year'].value_counts(sort=False).plot(kind='bar')
                 plt.title('Birth Year Statistics(' + city + ')')
