@@ -37,21 +37,17 @@ Moreover Time statistics, Station statistics, and User statistics are also shown
 
 Python 3.x is required to run this project. The Python executable should be in your default path, in which the Python installer should have set. 
 
-Additional required packages:
-* **pandas** : ```pip install pandas==1.1.4```
-* **numpy** : ```pip install numpy==1.19.4```
-* **seaborn** : ```pip install seaborn==0.11.0```
-* **matplotlib** : ```pip install matplotlib==3.3.2```
+To install the above packages(*if not installed*) open terminal or command prompt and type in the below command.
 
-To install the above packages(*if not installed*) open terminal or command prompt and type in the commands provided above.
-
-This project is done with pandas version 1.1.4, numpy version 1.19.4, seaborn version 0.11.0 and matplotlib version 3.3.2. Installing other versions may subject to errors.
+```shell
+pip install -r requirements.txt
+```
 
 ## Project contents:
 
 This project consists for the following files:
 
-* **bikeshare.py** - main Python script to run.
+* **main.py** - main Python script to run.
 * **chicago.csv** - contains bikeshare data for Chicago city.
 * **new_york_city.csv** - contains bikeshare data for New York city.
 * **washington.csv** - contains bikeshare data for Washington city.
@@ -72,7 +68,7 @@ git clone https://github.com/pks9862728888/Movie_trailer_website_generator.git
 Navigate to the project directory and type in the following command:
 
 ```bash
-python Bikeshare.py
+python main.py
 ```
 
 ## Extra Credit Description:
