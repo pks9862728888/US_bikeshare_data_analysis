@@ -452,36 +452,26 @@ def user_stats(dataframe, filters):
     print('               Filter: ', filters)
     print('**********************************************')
     start_time = time.time()
+    actual_user_count = len(dataframe)
 
     # Calculating count on user types
-    unique_user = dataframe['User Type'].unique()
     unique_user_count = dataframe['User Type'].value_counts()
-    total_counted_user = unique_user_count.iloc[0] + unique_user_count.iloc[1]
-    actual_user_count = len(dataframe)
+    unique_user_count.dropna(inplace=True)
+    user_data_index = unique_user_count.index
+    total_counted_user = unique_user_count.sum()
 
     # Displaying statistics on user types
     print('\n\n------------ User-Type Statistics ------------')
-    print('{} : {} or {:.3f} %'.format(unique_user[0], unique_user_count.iloc[0],
-                                       unique_user_count.iloc[0] * 100 / actual_user_count))
-    print('{} : {} or {:.3f} %'.format(unique_user[1], unique_user_count.iloc[1],
-                                       unique_user_count.iloc[1] * 100 / actual_user_count))
+    for user_type in user_data_index.values:
+        user_type_count = unique_user_count[user_type]
+        user_type_percentage = calculate_percentage(user_type_count, actual_user_count)
+        print('{} : {} or {:.3f} %'.format(user_type, user_type_count, user_type_percentage))
 
     # Displaying statistics for unknown user type
-    if len(unique_user) == 3 and len(unique_user_count) == 3:
-        percentage = calculate_percentage(unique_user_count.iloc[2], actual_user_count)
-        if unique_user[2] == 'Dependent':
-            print('{} : {} or {:.3f} %'.format(unique_user[2], unique_user_count.iloc[2], percentage))
-        else:
-            print('Unknown : {} or {:.3f} %'.format(unique_user_count.iloc[2], percentage))
-
-    elif len(unique_user) == 3 and len(unique_user_count) != 3:
-        other_user_count = actual_user_count - total_counted_user
-        percentage = calculate_percentage(other_user_count, actual_user_count)
-
-        if unique_user[2] == 'Dependent':
-            print('{} : {} or {:.3f} %'.format(unique_user[2], other_user_count, percentage))
-        else:
-            print('Unknown : {} or {:.3f} %'.format(other_user_count, percentage))
+    if total_counted_user != actual_user_count:
+        unknown_user_count = actual_user_count - total_counted_user
+        percentage = calculate_percentage(unknown_user_count, actual_user_count)
+        print('Unknown : {} or {:.3f} %'.format(unknown_user_count, percentage))
 
     print('----------------------------------------------')
 
