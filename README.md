@@ -62,7 +62,7 @@ This project can be downloaded by [clicking here](https://github.com/pks98627288
 Download the project zip file to your computer and unzip the file. Or clone this repository to your desktop by typing the following code in your terminal(*for Linux*) or command prompt(*for windows*):
 
 ```bash
-git clone https://github.com/pks9862728888/Movie_trailer_website_generator.git
+git clone https://github.com/pks9862728888/US_bikeshare_data_analysis.git
 ```
 
 Navigate to the project directory and type in the following command:
