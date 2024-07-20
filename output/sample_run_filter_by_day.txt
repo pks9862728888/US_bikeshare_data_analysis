@@ -1,0 +1,147 @@
+Hello! Let's explore some US bike-share data.
+
+Choose among the following cities for which you want to see the data:
+1) Chicago
+2) New York
+3) Washington?
+1
+
+Looks like you want to explore the statistics of:  Chicago
+----------------------------------------------
+
+Would you like to filter the data by:
+1) Month
+2) Day
+3) Both or
+4) None at all?
+Choose among the available filters(1 - 4):
+2
+Okay, We will apply the following filter:  Day
+----------------------------------------------
+
+Choose the day by which you want to filter the data:
+1) Sunday
+2) Monday
+3) Tuesday
+4) Wednesday
+5) Thursday
+6) Friday
+7) Saturday
+Please input numbers only(1-7):
+1
+
+
+****************CHOSEN FILTERS****************
+City: Chicago
+Month: All
+Day: Sunday
+----------------------------------------------
+
+
+*****************LOADING DATA*****************
+City:  Chicago
+Total data points found:  300000
+Most popular day for travelling:  Monday
+Counts:  45912
+
+This took 1.773165225982666 seconds.
+----------------------------------------------
+
+
+***************APPLYING FILTERS***************
+Filter: Day =  Sunday
+Total data points after applying filter:  44881
+
+This took 0.030241966247558594 seconds.
+----------------------------------------------
+
+
+************DISPLAYING STATISTICS*************
+**********************************************
+  Calculating Most Frequent Times Of Travel
+               Filter:  Day
+**********************************************
+
+Most popular month for travelling:  June
+Counts:  12639
+
+Most popular hour of day for travelling:  17
+Counts:  5978
+
+This took about 0.005983114242553711 seconds
+----------------------------------------------
+
+**********************************************
+  Calculating Most Popular Stations & Trips
+               Filter:  Day
+**********************************************
+Most Commonly Used Start Station:  Streeter Dr & Grand Ave
+Counts:  810
+
+Most Commonly Used End Station:  Streeter Dr & Grand Ave
+Counts:  922
+
+Most Popular Trip:
+Start Station: Lake Shore Dr & Monroe St
+End Station: Streeter Dr & Grand Ave
+Counts: 117
+
+This took about 0.05323314666748047 seconds.
+----------------------------------------------
+
+**********************************************
+          Calculating Trip Duration
+               Filter:  Day
+**********************************************
+Total Duration: 39945856 seconds
+Counts:  44881
+
+Average Duration: 890.039348499365 seconds
+
+This took about 0.0009992122650146484 seconds.
+----------------------------------------------
+
+**********************************************
+          Calculating User Statistics
+               Filter:  Day
+**********************************************
+
+------------ User Type Statistics ------------
+Subscriber : 37316 or 83.144 %
+Customer : 7565 or 16.856 %
+----------------------------------------------
+
+------------ Gender Statistics ------------
+Male : 28646 or 63.827 %
+Female : 8689 or 19.360 %
+Unknown : 7546 or 16.813 %
+----------------------------------------------
+
+------------ Birth Year Statistics -----------
+Most earliest birth year:  1899.0
+Most recent birth year:  2016.0
+Most common birth year:  1989.0
+Counts:  2171
+----------------------------------------------
+
+This took about 0.01627516746520996 seconds.
+----------------------------------------------
+
+Do you want to visualize different statistics? Type:
+1) Yes
+2) No
+2
+----------------------------------------------
+
+Do you want to see individual trip data? Type:
+1) Yes
+2) No
+2
+----------------------------------------------
+
+Would you like to restart? Enter:
+1) yes
+2) no
+2
+
+******************THANK YOU*******************
