@@ -480,13 +480,13 @@ def user_stats(dataframe, filters):
     if 'Gender' not in dataframe.columns:
         print('No data is found for Gender')
     else:
-        gender_data = pd.DataFrame(dataframe['Gender'].value_counts(), dataframe['Gender'].unique())
-        gender_data.drop(np.nan, inplace=True)
-        gender_data_index = gender_data.index
-        total_counted_gender = gender_data.values.sum()
+        gender_data_count = dataframe['Gender'].value_counts()
+        gender_data_count.dropna(inplace=True)
+        gender_data_index = gender_data_count.index
+        total_counted_gender = gender_data_count.sum()
 
         for gender in gender_data_index.values:
-            gender_count = gender_data['count'][gender]
+            gender_count = gender_data_count[gender]
             gender_percentage = calculate_percentage(gender_count, actual_user_count)
             print('{} : {} or {:.3f} %'.format(gender, gender_count, gender_percentage))
 
